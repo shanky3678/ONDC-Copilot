@@ -70,7 +70,9 @@ socket = new WebSocket('ws://127.0.0.1:8000/gpt');
 
 // Listen for messages from the server
 socket.addEventListener('message', (event) => {
-    messages.value = []
+    if(messages.value[0] == 'Connecting...'){
+        messages.value = []
+    }
     messages.value.push(event.data);
 });
 
