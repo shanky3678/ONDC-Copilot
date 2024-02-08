@@ -33,5 +33,17 @@
 </template>
 
 <style>
-@import '@/assets/css/output.css'
+@import '@/assets/css/output.css';
 </style>
+
+<script setup>
+import * as constant from '@/shared/constant.js'
+
+// check if there is access_token in cookies
+
+// if not, show login form
+
+// and save the access_token in cookies
+
+
+</script>
