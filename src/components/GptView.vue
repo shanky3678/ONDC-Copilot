@@ -35,12 +35,9 @@ body{
 
 import { onMounted, ref, watch,computed, onUnmounted } from 'vue'
 import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
-// import marked from 'marked'
 
-const dummyText = "Hello"
-const typed = ref('')
+
 const messages = ref(['Connecting...'])
-const markdown = ref()
 const textarea = ref('')
 
 const onchangeContent = (text) => {

@@ -1,5 +1,8 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import {useServerStore} from '@/stores/server'
+
+const useServer = useServerStore()
 </script>
 
 <template>

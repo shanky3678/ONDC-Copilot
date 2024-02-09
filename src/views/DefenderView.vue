@@ -21,10 +21,10 @@
                 <h1 class="font-bold text-[103px] leading-[115px] text-[1F263E] text-center">Become  <span class="login-condition-text">ONDC</span><br>Defender </h1>
                 <p class="mt-4 font-medium text-[22px] leading-[26px] text-[#979797] text-center">Earn ondc points and climb the ranks</p>
                 <div class="mt-[63px] w-full flex items-center">
-                    <button type="button" class=" py-[26px] w-1/2 text-white mr-8 bg-[#079ADC] rounded-[11px]">
+                    <button @click="navToDatabase()" type="button" class=" py-[26px] w-1/2 text-white mr-8 bg-[#079ADC] rounded-[11px]">
                         <h1 class="font-medium text-xl">Upload the law / Update (+10 pts )</h1>
                     </button>
-                    <button type="button" data-te-toggle="modal" data-te-target="#exampleModalCenter1"
+                    <button @click="navToVerification()" type="button" data-te-toggle="modal" data-te-target="#exampleModalCenter1"
                     data-te-ripple-init data-te-ripple-color="light" class="py-[26px] w-1/2 text-white bg-[#5D81F3] rounded-[11px]">
                         <h1 class="font-medium text-xl">Verify the submitted Laws ( +1 pt )</h1>
                     </button>
@@ -70,3 +70,20 @@
      </div>
  </div>
 </template>
+
+<script setup>
+
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+function navToDatabase(){
+    router.push({name: 'Database'})
+
+}
+
+function navToVerification(){
+    router.push({name: 'Verification'})
+}
+
+</script>
