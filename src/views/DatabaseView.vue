@@ -25,7 +25,20 @@
             
             <img src="@/assets/images/Setting.svg" alt="chat" class="ml-7">
             <img src="@/assets/images/INDIA.svg" alt="chat" class="ml-7">
-            <img src="@/assets/images/Profile.svg" alt="chat" class="ml-7">
+            <button @click="onPressProfileBtn()" type="button" class="ml-7">
+                            <img src="@/assets/images/Profile.svg" alt="bell-icon">
+                        </button>
+                        <ul v-show="showProfileMenu"
+                            class="list w-[400px] h-[300px] absolute top-[60px] right-12 rounded-[18px] shadow-xl border border-[#BABABA] p-12 bg-white z-[99]">
+                            <RouterLink to="/">
+                                <li class="font-bold text-lg text-[#979797] ">Home</li>
+                            </RouterLink>
+                            <RouterLink to="/defender">
+                                <li class="mt-9 font-bold text-lg  text-[#5D81F3]">Defender</li>
+                            </RouterLink>
+                            <li class="mt-9 font-bold text-lg text-[#979797]">Ranking</li>
+                            <!-- <li class="mt-9 font-bold text-lg text-[#979797]">Logout</li> -->
+                        </ul>
         </div>
     </div>
     <div class="w-full bg-[#d1cccc2e] relative pt-[64px] pl-10 pr-[62px] pb-11 flex h-customh2 overflow-auto sidebar">
@@ -327,6 +340,7 @@ const document_name = ref(null)
 const document_category = ref(null)
 const document_source_url = ref(null)
 const document_remark = ref(null)
+const showProfileMenu = ref(null)
 const file = ref(null)
 const router = useRouter()
 const bd1 = ref(null)
@@ -337,6 +351,12 @@ onMounted( async ()=> {
     initTE({ Dropdown,Modal });
     documents.value = await server.getVerifiedDocument()
 })
+
+
+function onPressProfileBtn() {
+    showProfileMenu.value = !showProfileMenu.value
+    console.log(showProfileMenu.value)
+}
 
 const onChangefunc = () => {
     if(bd2.value.checked){
@@ -368,6 +388,7 @@ async function submit(){
         let response = await server.uploadDocument("123456", document_name.value, document_category.value, document_source_url.value, document_remark.value, file.value.files[0], file.value.files[0].path)
         console.log(response)
         router.push({name: "Defender"})
+        window.refresh()
     }
 }   
 

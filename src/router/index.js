@@ -8,7 +8,6 @@ import AuthVerificationView from '@/views/AuthVerificationView.vue'
 import {useServerStore} from '@/stores/server'
 
 
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -49,12 +48,17 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach( async (to) => {
+router.beforeEach( async (to,from,next) => {
   // ✅ This will work because the router starts its navigation after
   // the router is installed and pinia will be installed too
   const server = useServerStore()
-  console.log(server.temp_access_key == null)
-  // if ( server.temp_access_key == null) return '/login'
+  let data = await server.checkIfAccessTokenIsExistAndValid()
+  if (!data) {
+    next('/login')
+  }else{
+    next()
+  }
+  
 })
 
 export default router

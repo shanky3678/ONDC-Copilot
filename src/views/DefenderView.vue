@@ -13,7 +13,20 @@
                 </button>
                 <img src="@/assets/images/Setting.svg" alt="chat" class="ml-7">
                 <img src="@/assets/images/INDIA.svg" alt="chat" class="ml-7">
-                <img src="@/assets/images/Profile.svg" alt="chat" class="ml-7">
+                <button @click="onPressProfileBtn()" type="button" class="ml-7">
+                            <img src="@/assets/images/Profile.svg" alt="bell-icon">
+                        </button>
+                        <ul v-show="showProfileMenu"
+                            class="list w-[400px] h-[300px] absolute top-[60px] right-12 rounded-[18px] shadow-xl border border-[#BABABA] p-12 bg-white z-[99]">
+                            <RouterLink to="/">
+                                <li class="font-bold text-lg text-[#979797] ">Home</li>
+                            </RouterLink>
+                            <RouterLink to="/defender">
+                                <li class="mt-9 font-bold text-lg  text-[#5D81F3]">Defender</li>
+                            </RouterLink>
+                            <li class="mt-9 font-bold text-lg text-[#979797]">Ranking</li>
+                            <!-- <li class="mt-9 font-bold text-lg text-[#979797]">Logout</li> -->
+                        </ul>
             </div>
         </div>
         <div class="w-full bg-[#d1cccc2e] h-customh2 relative">
@@ -74,9 +87,24 @@
 <script setup>
 
 import { useRouter } from 'vue-router';
+import { useServerStore } from '@/stores/server'
+import {storeToRefs} from 'pinia'
+import { onMounted, ref } from 'vue';
 
 const router = useRouter();
+const server = useServerStore()
+const showProfileMenu = ref(false)
+const { userDetails , temp_access_key} = storeToRefs(server)
 
+onMounted( () => {
+    console.log(userDetails.value, temp_access_key.value)
+})
+
+function onPressProfileBtn() {
+    showProfileMenu.value = !showProfileMenu.value
+    console.log(showProfileMenu.value)
+}
+ 
 function navToDatabase(){
     router.push({name: 'Database'})
 

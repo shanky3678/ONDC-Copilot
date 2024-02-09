@@ -150,12 +150,12 @@
                         </button>
                         <ul v-show="showProfileMenu"
                             class="list w-[400px] h-[300px] absolute top-[60px] right-12 rounded-[18px] shadow-xl border border-[#BABABA] p-12 bg-white z-[99]">
-                            <a href="#">
-                                <li class="font-bold text-lg text-[#5D81F3]">Home</li>
-                            </a>
-                            <a href="/defender">
-                                <li class="mt-9 font-bold text-lg text-[#979797]">Defender</li>
-                            </a>
+                            <RouterLink to="/">
+                                <li class="font-bold text-lg text-[#5D81F3] ">Home</li>
+                            </RouterLink>
+                            <RouterLink to="/defender">
+                                <li class="mt-9 font-bold text-lg text-[#979797]  ">Defender</li>
+                            </RouterLink>
                             <li class="mt-9 font-bold text-lg text-[#979797]">Ranking</li>
                             <li class="mt-9 font-bold text-lg text-[#979797]">Logout</li>
                         </ul>
@@ -163,7 +163,7 @@
                 </div>
             </div>
             <div  class="bg-[#d1cccc2e] pl-7 pr-[35px] pb-7 pt-[40px]">
-                <div class="overflow-auto h-customh1 gray-scroll pt-[42px] pr-[15px]">
+                <div ref="chatContainer" class="overflow-auto h-customh1 gray-scroll pt-[42px] pr-[15px]">
                     <div class="relative">
                         <div class="bg-[#E9F3FD] rounded-[33px] pt-[40px] pl-[90px] pb-[50px]">
                             <h1 class="text-[40px] leading-[50px] font-bold text-[#1F263E]">Welcome to ONDC <br> Dashboard
@@ -177,7 +177,7 @@
                         <img src="@/assets/images/Chat-bot-amico.svg" alt="chat-bot"
                             class="absolute top-[-38px] right-0 h-[290px] w-[290px]">
                     </div>
-                    <div ref="chatContainer" class="mt-[22px] rounded-[5px] bg-white px-[46px] py-10" >
+                    <div class="mt-[22px] rounded-[5px] bg-white px-[46px] py-10" >
 
                         <div v-for="(message, index) in messages" :key="index" >
                             <div v-if="message.bot" class="flex items-start">
@@ -247,6 +247,35 @@ onUnmounted(() => {
     disconnectSocket()
 })
 
+let messageListener = (event) => {
+    if (messages.value[0].bot == 'Connecting...') {
+        messages.value = [];
+    }
+    messages.value.push({
+        'bot': event.data
+    });
+    autoScrollDown()
+};
+
+let errorListener = (error) => {
+        console.error('WebSocket error:', error);
+    }
+
+function initialConnection() {
+    socket = new WebSocket(`${constant.socketEndpoint}/gpt`);
+
+    // Listen for messages from the server
+    socket.addEventListener('message', messageListener);
+
+    // Handle socket errors
+    socket.addEventListener('error',errorListener);
+}
+
+function disconnectSocket(){
+    socket.removeEventListener('message', messageListener)
+    socket.removeEventListener('error',errorListener )
+}
+
 function onPressProfileBtn() {
     showProfileMenu.value = !showProfileMenu.value
     console.log(showProfileMenu.value)
@@ -255,35 +284,20 @@ function onPressProfileBtn() {
 const chatContainer = ref(null);
 
 const autoScrollDown = () => {
+    console.log(chatContainer.value)
+    console.log(chatContainer.value.scrollTop)
+    console.log(chatContainer.value.scrollBottom)
+    console.log(chatContainer.value.scrollHeight)
     if (chatContainer.value) {
     chatContainer.value.scrollTop = chatContainer.value.scrollHeight;
     }
 };
 
-watch(messages, autoScrollDown);
+// watch(messages, () => {
+//     autoScrollDown
+// });
 
-function initialConnection() {
-    socket = new WebSocket(`${constant.socketEndpoint}/gpt`);
 
-    // Listen for messages from the server
-    socket.addEventListener('message', (event) => {
-        if (messages.value[0].bot == 'Connecting...') {
-            messages.value = []
-        }
-        messages.value.push({
-            'bot': event.data
-        });
-    });
-
-    // Handle socket errors
-    socket.addEventListener('error', (error) => {
-        console.error('WebSocket error:', error);
-    });
-}
-
-function disconnectSocket(){
-    socket.removeEventListener('message')
-}
 
 const sendMessage = () => {
     console.log(textarea.value)
@@ -291,6 +305,7 @@ const sendMessage = () => {
         messages.value.push({'user':textarea.value})
         socket.send(textarea.value);
         textarea.value = ''
+        autoScrollDown()
     }
 }
 

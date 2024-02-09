@@ -2,17 +2,13 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { getCookie, setCookie } from '@/shared/utils'
 import * as constant from '@/shared/constant'
-import axios from 'axios';
 import FormData from 'form-data';
-import fs from 'fs';
-
 
 
 export const useServerStore = defineStore('server', () => {
     const temp_access_key = ref(null)
     const userDetails = ref(null)
-    const tempAccessToken = 'ya29.a0AfB_byCTa5A_5-pPPZJ7remOFAozBWO_dpFzdktEvaR9h9HbNoVxdcJSOAcCqYhQO4L0SCircvc8IT8N3-FSntK886RjWywwusLFcPzt8HxOn0XkPTvdz9BYAKIh3fz12pqVHnRiV0WzviobxX8gJbv5tXQl_AtoZQLWaCgYKAVwSARESFQHGX2MijVRmxQ3TmbpcSc2ot7wrlQ0171'
-    
+
     async function login(){
         let myHeaders = new Headers();
         myHeaders.append("Accept", "application/json");
@@ -42,6 +38,9 @@ export const useServerStore = defineStore('server', () => {
 
     async function checkIfAccessTokenIsExistAndValid(){
         temp_access_key.value = getCookie('token')
+        if(temp_access_key.value == null){
+            return false
+        }
         let data = await validateAccessToken(temp_access_key.value)
         if(data.hasOwnProperty('message')){
             return false

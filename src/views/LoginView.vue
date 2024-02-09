@@ -50,8 +50,6 @@ const useServer = useServerStore()
 const router = useRouter()
 
 onMounted( async () => {
-    useServer.duringLogin()
-    useServer2.duringLogin()
     let response = await useServer.checkIfAccessTokenIsExistAndValid()
     if(response){
         router.push({ name: 'Home' });
@@ -60,7 +58,7 @@ onMounted( async () => {
 
 async function login(){
     let resposne = await useServer.login()
-    window.open(resposne['url'], '_blank');
+    window.open(resposne['url']);
 }
 // check if there is access_token in cookies
 

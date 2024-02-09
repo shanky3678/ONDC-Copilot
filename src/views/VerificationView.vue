@@ -13,7 +13,7 @@
                         </button>
                         <ul v-show="showProfileMenu"
                             class="list w-[400px] h-[300px] absolute top-[60px] right-12 rounded-[18px] shadow-xl border border-[#BABABA] p-12 bg-white z-[99]">
-                            <a href="/home">
+                            <a href="/">
                                 <li class="font-bold text-lg text-[#979797] ">Home</li>
                             </a>
                             <a href="/defender">
@@ -349,13 +349,12 @@ async function verifyDocument() {
     if(unverifiedDocuments.length > 0) {
 
     console.log(unverifiedDocuments.value[0]['document_id'],
-        unverifiedDocuments.value[0]['verify_remark'],
-        unverifiedDocuments.value[0]['is_legit'])
+    verify_remark.value,is_legit.value)
     // server.verifyDocument(
     //     "user_id",
     //     unverifiedDocuments.value[0]['document_id'],
-    //     unverifiedDocuments.value[0]['verify_remark'],
-    //     unverifiedDocuments.value[0]['is_legit'],
+    //     verify_remark.value,
+    //     is_legit.value
     // )
     }
 }
