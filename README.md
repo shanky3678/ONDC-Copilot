@@ -1,14 +1,15 @@
-# ONDC-Frontend
+# ONDC-Copilot
 
-This template should help get you started developing with Vue 3 in Vite.
+ONDC-Copilot is a user-friendly interface that communicates with a backend API to provide seamless interaction with Co-pilot. It allows users to upload state rules, which are not available in the database, for document verification and processing. Uploaded documents undergo OCR for labeling processing and are stored in a RAG (Red, Amber, Green) system for enhanced performance. Users who upload documents and those who verify them earn points as rewards for their contributions to the platform.
 
-## Recommended IDE Setup
+## Features
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- **Interface with Backend API:** Seamless communication with the backend API for enhanced functionality.
+- **Co-pilot Connectivity:** Allows users to interact with Co-pilot through the user interface.
+- **State Rules Upload:** Users can upload state rules not available in the database for document processing.
+- **Document Verification:** Uploaded documents are verified by users before undergoing OCR for labeling processing.
+- **Reward System:** Both document uploaders and verifiers earn points as rewards for their contributions.
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
@@ -40,12 +41,4 @@ npm run test:unit
 npm run test:e2e:dev
 ```
 
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
 
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
