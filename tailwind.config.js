@@ -19,7 +19,7 @@ export default {
     height: {
       customh1: 'calc(100vh - 255px)',
       customh2: 'calc(100vh - 75px)',
-      customh3: 'calc(100vh - 660px)'
+      customh3: 'calc(100vh - 560px)'
     },
   },
   },

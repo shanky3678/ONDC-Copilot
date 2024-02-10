@@ -1,5 +1,5 @@
-export const endpoint = "http://127.0.0.1:5000"
-export const socketEndpoint = "ws://127.0.0.1:5000"
+export const endpoint = "https://ondc.cydratech.com"
+export const socketEndpoint = "wss://ondc.cydratech.com"
 export const uploadOption1 = "Similar file exists here, but my file is an update to it"
 export const uploadOption2 = "Exact Law/ regulation file I want to upload again"
 export const uploadOption3 = "My law/ regulation file does not exist here"
