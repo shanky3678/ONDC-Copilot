@@ -150,14 +150,16 @@
                         </button>
                         <ul v-show="showProfileMenu"
                             class="list w-[400px] h-[300px] absolute top-[60px] right-12 rounded-[18px] shadow-xl border border-[#BABABA] p-12 bg-white z-[99]">
-                            <RouterLink to="/">
-                                <li class="font-bold text-lg text-[#5D81F3] ">Home</li>
+                            <RouterLink to="/home">
+                                <li class="font-bold text-lg text-[#979797] ">Home</li>
                             </RouterLink>
                             <RouterLink to="/defender">
                                 <li class="mt-9 font-bold text-lg text-[#979797]  ">Defender</li>
                             </RouterLink>
-                            <li class="mt-9 font-bold text-lg text-[#979797]">Ranking</li>
-                            <li class="mt-9 font-bold text-lg text-[#979797]">Logout</li>
+                            <button type="button" data-te-toggle="modal" data-te-target="#rankingpop"
+                            data-te-ripple-init data-te-ripple-color="light" >
+                    <li class="mt-9 font-bold text-lg text-[#979797]">Ranking</li>
+                    </button>
                         </ul>
                     </div>
                 </div>
@@ -213,6 +215,32 @@
             </div>
         </div>
     </div>
+    <div data-te-modal-init
+ class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
+ id="rankingpop" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-modal="true" role="dialog">
+ <div data-te-modal-dialog-ref
+     class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-[580px] translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[600px]">
+     <div
+         class="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600 px-16 py-[60px]">
+         <button type="button"
+             class=" absolute top-4 right-5 box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+             data-te-modal-dismiss aria-label="Close">
+             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                 stroke="currentColor" class="h-6 w-6">
+                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+             </svg>
+         </button>
+
+         <!--Modal body-->
+         <div class="relative w-full">
+             <p class="font-semibold text-[29px] text-center">Ranking will appear once enough users upload Laws/Regulation</p>
+             <button type="button" data-te-modal-dismiss aria-label="Close" class="w-[182px] h-[64px] font-semibold text-[29px] leading-[35px] text-white rounded mt-12 mx-auto bg-[#5D81F3] flex justify-center items-center">
+                Okay
+             </button>
+         </div>
+         </div>
+     </div>
+ </div>
 </template>
 
 <script setup>
@@ -238,7 +266,6 @@ const textarea = ref('')
 let socket;
 
 onMounted(() => {
-    console.log(server.temp_access_key)
     initTE({ Tooltip, Dropdown });
     initialConnection()
 });
@@ -274,6 +301,7 @@ function initialConnection() {
 function disconnectSocket(){
     socket.removeEventListener('message', messageListener)
     socket.removeEventListener('error',errorListener )
+    socket.close();
 }
 
 function onPressProfileBtn() {

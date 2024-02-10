@@ -18,13 +18,17 @@
                         </button>
                         <ul v-show="showProfileMenu"
                             class="list w-[400px] h-[300px] absolute top-[60px] right-12 rounded-[18px] shadow-xl border border-[#BABABA] p-12 bg-white z-[99]">
-                            <RouterLink to="/">
+                            <RouterLink to="/home">
                                 <li class="font-bold text-lg text-[#979797] ">Home</li>
                             </RouterLink>
                             <RouterLink to="/defender">
                                 <li class="mt-9 font-bold text-lg  text-[#5D81F3]">Defender</li>
                             </RouterLink>
-                            <li class="mt-9 font-bold text-lg text-[#979797]">Ranking</li>
+                            <button type="button" data-te-toggle="modal" data-te-target="#rankingpop"
+                            data-te-ripple-init data-te-ripple-color="light" >
+                    <li class="mt-9 font-bold text-lg text-[#979797]">Ranking</li>
+                    </button>
+                            
                             <!-- <li class="mt-9 font-bold text-lg text-[#979797]">Logout</li> -->
                         </ul>
             </div>
@@ -37,8 +41,7 @@
                     <button @click="navToDatabase()" type="button" class=" py-[26px] w-1/2 text-white mr-8 bg-[#079ADC] rounded-[11px]">
                         <h1 class="font-medium text-xl">Upload the law / Update (+10 pts )</h1>
                     </button>
-                    <button @click="navToVerification()" type="button" data-te-toggle="modal" data-te-target="#exampleModalCenter1"
-                    data-te-ripple-init data-te-ripple-color="light" class="py-[26px] w-1/2 text-white bg-[#5D81F3] rounded-[11px]">
+                    <button @click="navToVerification()" class="py-[26px] w-1/2 text-white bg-[#5D81F3] rounded-[11px]">
                         <h1 class="font-medium text-xl">Verify the submitted Laws ( +1 pt )</h1>
                     </button>
                 </div>
@@ -58,7 +61,7 @@
 </body>
 <div data-te-modal-init
  class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
- id="exampleModalCenter1" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-modal="true" role="dialog">
+ id="rankingpop" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-modal="true" role="dialog">
  <div data-te-modal-dialog-ref
      class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-[580px] translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[600px]">
      <div
@@ -87,17 +90,16 @@
 <script setup>
 
 import { useRouter } from 'vue-router';
-import { useServerStore } from '@/stores/server'
-import {storeToRefs} from 'pinia'
 import { onMounted, ref } from 'vue';
+import { Modal,Popconfirm,initTE} from "tw-elements";
+
 
 const router = useRouter();
-const server = useServerStore()
 const showProfileMenu = ref(false)
-const { userDetails , temp_access_key} = storeToRefs(server)
+
 
 onMounted( () => {
-    console.log(userDetails.value, temp_access_key.value)
+    initTE({ Modal,Popconfirm });
 })
 
 function onPressProfileBtn() {

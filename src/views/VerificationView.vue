@@ -13,13 +13,16 @@
                         </button>
                         <ul v-show="showProfileMenu"
                             class="list w-[400px] h-[300px] absolute top-[60px] right-12 rounded-[18px] shadow-xl border border-[#BABABA] p-12 bg-white z-[99]">
-                            <a href="/">
+                            <RouterLink to="/home">
                                 <li class="font-bold text-lg text-[#979797] ">Home</li>
-                            </a>
-                            <a href="/defender">
+                            </RouterLink>
+                            <RouterLink to="/defender">
                                 <li class="mt-9 font-bold text-lg  text-[#5D81F3]">Defender</li>
-                            </a>
-                            <li class="mt-9 font-bold text-lg text-[#979797]">Ranking</li>
+                            </RouterLink>
+                            <button type="button" data-te-toggle="modal" data-te-target="#rankingpop"
+                            data-te-ripple-init data-te-ripple-color="light" >
+                    <li class="mt-9 font-bold text-lg text-[#979797]">Ranking</li>
+                    </button>
                             <!-- <li class="mt-9 font-bold text-lg text-[#979797]">Logout</li> -->
                         </ul>
         </div>
@@ -105,7 +108,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-show="showSubmitBtn">
+                <div v-show="true">
                     <div class="flex items-center">
                         <input ref="bd1" v-model="selectedOption1" @click="select1" :value="constant.verifyOption1"
                             class="relative float-left -ml-[1.5rem] mr-[6px] mt-[0.15rem] h-7 w-7 appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-[#C8C8C8] outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ml-[7px] checked:after:block checked:after:h-[19px] checked:after:w-[9px] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] "
@@ -260,6 +263,33 @@
             </div>
         </div>
     </div>
+
+    <div data-te-modal-init
+ class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
+ id="rankingpop" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-modal="true" role="dialog">
+ <div data-te-modal-dialog-ref
+     class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-[580px] translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[600px]">
+     <div
+         class="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600 px-16 py-[60px]">
+         <button type="button"
+             class=" absolute top-4 right-5 box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+             data-te-modal-dismiss aria-label="Close">
+             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                 stroke="currentColor" class="h-6 w-6">
+                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+             </svg>
+         </button>
+
+         <!--Modal body-->
+         <div class="relative w-full">
+             <p class="font-semibold text-[29px] text-center">Ranking will appear once enough users upload Laws/Regulation</p>
+             <button type="button" data-te-modal-dismiss aria-label="Close" class="w-[182px] h-[64px] font-semibold text-[29px] leading-[35px] text-white rounded mt-12 mx-auto bg-[#5D81F3] flex justify-center items-center">
+                Okay
+             </button>
+         </div>
+         </div>
+     </div>
+ </div>
 </template>
 
 <style>
@@ -268,12 +298,14 @@
 
 <script setup>
 import { onMounted, ref, watchEffect } from 'vue'
+import { useRouter } from 'vue-router'
 import { Popconfirm, initTE } from 'tw-elements'
 import { useServerStore } from '@/stores/server';
 import * as constant from '@/shared/constant'
 import { isEmptyOrNull} from '@/shared/utils'
 
 
+const router = useRouter()
 const server = useServerStore();
 const unverifiedDocuments = ref([])
 const verifiedDocuments = ref([])
@@ -345,17 +377,21 @@ const select4 = () => {
 
 
 async function verifyDocument() {
-    console.log(verify_remark.value,is_legit.value)
     if(unverifiedDocuments.length > 0) {
-
-    console.log(unverifiedDocuments.value[0]['document_id'],
-    verify_remark.value,is_legit.value)
-    // server.verifyDocument(
-    //     "user_id",
-    //     unverifiedDocuments.value[0]['document_id'],
-    //     verify_remark.value,
-    //     is_legit.value
-    // )
+    let response = await server.verifyDocument(
+        server.userDetails.id,
+        unverifiedDocuments.value[0]['document_id'],
+        "1",
+        verify_remark.value,
+        is_legit.value
+    )
+    if( response.include("message")){
+            router.push({
+                name: 'Defender'
+            })
+        }else{
+            alert("Something went wrong. Refresh and try again." + response)
+        }
     }
 }
 

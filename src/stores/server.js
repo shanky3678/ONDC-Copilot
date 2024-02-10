@@ -2,7 +2,6 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { getCookie, setCookie } from '@/shared/utils'
 import * as constant from '@/shared/constant'
-import FormData from 'form-data';
 
 
 export const useServerStore = defineStore('server', () => {
@@ -102,36 +101,65 @@ export const useServerStore = defineStore('server', () => {
         return await JSON.parse(verifiedDocumentsText);
     }
 
-    async function uploadDocument(user_id, document_name, document_category, document_source_url, document_remark, fileInput,path) {
-     
-        let myHeaders = new Headers();
-        myHeaders.append("Accept", "application/json");
-        myHeaders.append("Authorization", `Bearer ya29.a0AfB_byCTa5A_5-pPPZJ7remOFAozBWO_dpFzdktEvaR9h9HbNoVxdcJSOAcCqYhQO4L0SCircvc8IT8N3-FSntK886RjWywwusLFcPzt8HxOn0XkPTvdz9BYAKIh3fz12pqVHnRiV0WzviobxX8gJbv5tXQl_AtoZQLWaCgYKAVwSARESFQHGX2MijVRmxQ3TmbpcSc2ot7wrlQ0171`);
-        myHeaders.append("Content-Type", "multipart/form-data");
+    async function uploadDocument(user_id, document_name, document_category, document_source_url, document_remark, fileInput) {
+        var myHeaders = new Headers();
+myHeaders.append("Content-Type", "multipart/form-data");
+myHeaders.append("Accept", "application/json");
 
-        let formdata = new FormData();
-        formdata.append("user_id", user_id);
-        formdata.append("document_name", document_name);
-        formdata.append("document_category", document_category);
-        formdata.append("document_source_url", document_source_url);
-        formdata.append("upload_remark", document_remark);
-        formdata.append("file", fileInput);
+var formdata = new FormData();
+formdata.append("user_id", "Testing");
+formdata.append("document_name", "Testing");
+formdata.append("document_category", "Testing");
+formdata.append("document_source_url", "Testing");
+formdata.append("upload_remark", "Testing");
+formdata.append("file", fileInput);
 
-        console.log("FormData:", formdata); // Check FormData object in console
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: formdata,
+  redirect: 'follow'
+};
 
-        let requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: formdata
+fetch("http://127.0.0.1:5000/upload/pdfdoc", requestOptions)
+  .then(response => response.text())
+  .then(result => {
+    console.log(result)
+    return result
+  })
+  .catch(error => console.log('error', error));
+        // let myHeaders = new Headers();
+        // myHeaders.append("Accept", "application/json");
+        // myHeaders.append("Authorization", `Bearer ${temp_access_key.value}`);
+        // myHeaders.append("Content-Type", "multipart/form-data");
+
+        // let formdata = new FormData();
+        // formdata.append("user_id", user_id);
+        // formdata.append("document_name", document_name);
+        // formdata.append("document_category", document_category);
+        // formdata.append("document_source_url", document_source_url);
+        // formdata.append("upload_remark", document_remark);
+        // formdata.append("file", fileInput);
+
+        // console.log("FormData:", formdata); // Check FormData object in console
+
+        // let requestOptions = {
+        //     method: 'POST',
+        //     headers: myHeaders,
+        //     body: formdata
             
-        };
-           let response =  await fetch(`${constant.endpoint}/upload/pdfdoc`, requestOptions)
-           let finalResponse =  await response.text()
-           console.log(JSON.parse(finalResponse));
-           return await JSON.parse(finalResponse)
+        // };
+        //    let response =  await fetch(`${constant.endpoint}/upload/pdfdoc`, requestOptions)
+        //    let finalResponse =  await response.text()
+        //    console.log(JSON.parse(finalResponse));
+        //    return await JSON.parse(finalResponse)
     }
 
     async function verifyDocument(user_id, document_id, verify_remark, is_legit ) {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Accept", "application/json");
+        myHeaders.append("Authorization", `Bearer ${temp_access_key.value}`);
         var raw = JSON.stringify({
             "verify_by": user_id,
             "document_id": document_id,
