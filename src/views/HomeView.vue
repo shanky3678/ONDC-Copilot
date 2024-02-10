@@ -13,7 +13,7 @@
         </div>
         </div>
         <div class="min-w-[20%] max-w-[20%] w-[20%] h-auto bg-[#0D3357] px-5 pt-10 pb-10">
-            <img src="@/assets/images/logo.svg" alt="logo" class="mx-auto border-b border-[#D8D8D8]">
+            <img  src="@/assets/images/bot.png" alt="logo" class="h-[50px] w-[50px] mx-auto border-b border-[#D8D8D8]">
             <h1 class="mt-10 font-normal text-[22px] leading-[25px] text-white">Check the compliance's for your products
             </h1>
             <div class="mt-6">
@@ -97,7 +97,7 @@
                         placeholder="Other Specific Details Related to Products "></textarea> -->
                 </div>
                 <div class="flex justify-center w-full mx-auto">
-                    <button type="button" class="bg-[#5D81F3] w-full rounded px-[65px] py-2.5">
+                    <button @click="sendMessage()" type="button" class="bg-[#5D81F3] w-full rounded px-[65px] py-2.5">
                         <h1 class="text-white text-xs font-normal">SUBMIT</h1>
                     </button>
                 </div>

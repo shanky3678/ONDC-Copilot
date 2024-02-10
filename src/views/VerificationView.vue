@@ -17,7 +17,7 @@
 
         <div class="pl-8 pr-[60px] py-2 flex justify-between items-center">
             <div class="flex items-center">
-                <img src="@/assets/images/government-of-india.svg" alt="logo">
+                <img class="h-[50px] w-[50px]" src="@/assets/images/bot.png" alt="logo">
                 <p class="ml-3 font-normal text-[#1F263E] text-[19px]">ONDC <br> DASHBAORD</p>
             </div>
             <div class="flex items-center">
