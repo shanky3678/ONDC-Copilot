@@ -254,17 +254,17 @@ export const useServerStore = defineStore("server", () => {
     let myHeaders = new Headers();
     myHeaders.append("Accept", "application/json");
     myHeaders.append("Content-Type", "application/json");
-
     myHeaders.append("Authorization", `Bearer ${temp_access_key.value}`);
+    let raw = JSON.stringify({
+      state_codes: status_codes,
+      act_numbers: act_numbers,
+      short_title: short_title,
+      act_department: act_department,
+    })
     let requestOptions = {
       method: "POST",
       headers: myHeaders,
-      body: JSON.stringify({
-        state_codes: status_codes,
-        act_numbers: act_numbers,
-        short_title: short_title,
-        act_department: act_department,
-      }),
+      body: raw
     };
 
     let data = await fetch(

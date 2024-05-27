@@ -379,7 +379,9 @@
                 <!--label round full-->
 
                 <!--button with label-->
-                <div class="flex flex-row items-center justify-center mb-20">
+                <div class="flex flex-row 
+                
+                items-center justify-center mb-20">
 
                     <button v-for="value of documentDetails.tags" :key="value"
                         class="px-4 py-2 mr-1 mb-1 bg-[#084acf]  outline-none rounded shadow text-white text-xs font-bold uppercase focus:outline-none hover:shadow-md active:bg-gray-600">
@@ -417,7 +419,7 @@ onMounted(async() => {
         try {
             stateMapping.value = await server.getStateMapping();
             documentDetails.value = await server.getPageDocumentsDetails(documentId);
-            console.log(documentDetails.value)
+          
         } catch (error) {
             console.error('Failed to fetch document details:', error);
         }

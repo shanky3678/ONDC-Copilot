@@ -92,6 +92,7 @@
             </div>
             <div class="relative">
               <button
+              @click="search"
                 type="button"
                 class="ml-3 py-3 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 text-center me-2 mb-2"
               >
@@ -250,6 +251,7 @@ const documents = ref([]);
 const search_act_number = ref("");
 const search_dept = ref("");
 
+
 onMounted(() => {
   initialRun();
 });
@@ -265,29 +267,29 @@ const getStateName = (value) => {
   return state ? state[0].state_name : "Unknown State";
 };
 
-const search = () =>{
-  if(!isEmptyOrNull(search_act_number.value) || !isEmptyOrNull(search_act_number.value)){
+const search = async() =>{
+  if(!isEmptyOrNull(search_act_number.value) || !isEmptyOrNull(search_dept.value)){
     documents.value = []
-    documents.value = server.searchDocuments(search_act_number.value, search_dept.value);
+    
+    documents.value = await server.getPageDocuments(page_count.value,10, [],!isEmptyOrNull(search_act_number.value) ? [search_act_number.value.toString()] : [], "", search_dept.value )
+    total_page_count.value = await server.getPageCount(10,[],!isEmptyOrNull(search_act_number.value) ? [search_act_number.value.toString()] : [],"", search_dept.value);
+  
   }
 }
 
 const initialRun = async () => {
-  console.log("initialRun");
   total_page_count.value = await server.getPageCount(10);
 
   documents.value = await server.getPageDocuments(page_count.value, 10);
   stateMapping.value = await server.getStateMapping();
-  console.log(documents.value);
+
 };
 
 const showDetails = (id) => {
-  console.log("showDetails", id);
   router.push({ name: "LawDataTableView", query: { id: id } });
 };
 
 const nextPage = async () => {
-  console.log("nextPage");
   documents.value = [];
 
   page_count.value = page_count.value + 1;
@@ -303,7 +305,6 @@ const nextPage = async () => {
 }
 const prevPage = async () => {
   documents.value = [];
-  console.log("prevPage");
   page_count.value = page_count.value - 1;
   if (page_count.value < 1) {
     page_count.value = 1;
