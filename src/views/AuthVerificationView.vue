@@ -37,6 +37,7 @@ const route = useRoute();
 const router = useRouter();
 const isBusy = ref(false)
 
+
 // Access specific query parameters
 const token = route.query.token;
 

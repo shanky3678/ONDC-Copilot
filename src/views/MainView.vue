@@ -156,6 +156,9 @@ import { useRouter } from 'vue-router';
 import { useServerStore } from '@/stores/server';
 import { isEmptyOrNull } from '@/shared/utils';
 import Navbar from '@/components/Navbar.vue';
+import { Modal, Popconfirm, initTE } from "tw-elements";
+import defaultImage from '@/assets/images/userPro.png'
+
 
 import { onMounted ,ref} from 'vue';
 const router = useRouter()
@@ -179,6 +182,7 @@ const navTo = (value) => {
 }
 
 onMounted(async ()=>{
+    initTE({ Modal, Popconfirm });
     ranking.value = await server.fetchRanking()
 })
 

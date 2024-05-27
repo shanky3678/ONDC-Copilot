@@ -309,6 +309,8 @@ import { useServerStore } from "@/stores/server";
 import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { isEmptyOrNull } from "@/shared/utils";
+import defaultImage from '@/assets/images/userPro.png'
+
 
 const page_count = ref(1);
 const router = useRouter();

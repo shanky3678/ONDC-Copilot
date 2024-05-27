@@ -371,6 +371,7 @@ import { isEmptyOrNull} from '@/shared/utils'
 import { useRouter } from 'vue-router';
 import {useServerStore} from '@/stores/server';
 import Navbar from '@/components/Navbar.vue';
+import defaultImage from '@/assets/images/userPro.png'
 
 const server = useServerStore();
 const documents = ref([])

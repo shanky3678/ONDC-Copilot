@@ -367,6 +367,7 @@ import { useServerStore } from '@/stores/server';
 import * as constant from '@/shared/constant'
 import { isEmptyOrNull } from '@/shared/utils'
 import Navbar from '@/components/Navbar.vue'
+import defaultImage from '@/assets/images/userPro.png'
 
 const router = useRouter()
 const server = useServerStore();
