@@ -29,21 +29,22 @@
                         <div class="flex items-center mt-10 w-full">
                             <RouterLink to="/home">
                             <button
-                            @click="navTo('Home')"
                                 class="border border-[#094B72] mr-[15px] bg-[#E7F6FF] py-7 px-5 rounded-lg w-[300px] text-[18px] font-extrabold text-[#094B72]">Check
                                 laws for my product</button>
                             </RouterLink>
-                            <router-link to="/home?showSlideBar=false" >
-
+                            <RouterLink to="/home?showSideBar=false" >
                                 <button 
                                 class="border border-[#094B72] mr-[15px] bg-[#E7F6FF] py-7 px-5 rounded-lg w-[300px] text-[18px] font-extrabold text-[#094B72]">Ask
                                 legal doubts</button>
-                            </router-link>
+                            </RouterLink>
                         </div>
                         <div class="flex items-center mt-5 w-full">
-                            <button @click="navTo('Home')"
+                            <RouterLink to="/home?showUploadFile=true">
+
+                                <button @click="navTo('Home')"
                                 class="border border-[#094B72] mr-[15px] text-[#FFFFFF] py-7 px-5 rounded-lg w-[300px] text-[18px] font-extrabold bg-[#094B72]">Ask
                                 with product image</button>
+                            </RouterLink>
                             <button @click="navTo('Defender')"
                                 class="border border-[#094B72] mr-[15px] text-[#FFFFFF] py-7 px-5 rounded-lg w-[300px] text-[18px] font-extrabold bg-[#094B72]">Upload/Verify
                                 laws</button>

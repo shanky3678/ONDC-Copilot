@@ -309,9 +309,9 @@
                         placeholder="Other Specific Details Related to Products "></textarea> -->
         </div>
         <div class="flex justify-center w-full mx-auto">
-          <!-- <button @click="sendMessage()" type="button" class="bg-[#5D81F3] w-full rounded px-[65px] py-2.5">
+          <button @click="sendMessage()" type="button" class="bg-[#5D81F3] w-full rounded px-[65px] py-2.5">
                         <h1 class="text-white text-xs font-normal">SUBMIT</h1>
-                    </button> -->
+                    </button>
         </div>
         <div class="mt-8">
           <!-- <div class="flex items-center">
@@ -324,12 +324,14 @@
     
     <div class="min-w-[80%] w-[80%]" :class="showSideBarClass">
       <div class="pl-8 pr-[60px] py-2 flex justify-between items-center shadow-lg sticky">
-        <RouterLink to="/main">
-            <div class="flex items-center">
+        <div class="flex items-center">
+            <div v-if="!showSideBar">
+          <RouterLink to="/main">
                 <img class="h-[50px] w-[50px]" src="@/assets/images/bot.png" alt="logo">
                 <p class="ml-3 font-normal text-[#1F263E] text-[19px]">ONDC <br> DASHBOARD </p>
+              </RouterLink>
             </div>
-            </RouterLink>
+        </div>
             <div class="flex items-center">
                 
               <Navbar />

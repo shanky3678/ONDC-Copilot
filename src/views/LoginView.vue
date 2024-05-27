@@ -1,89 +1,110 @@
 <template>
-    <!-- <body class="flex flex-col justify-center items-center h-screen"> -->
-       <!-- <div v-show="isBusy" class="h-full w-full bg-black opacity-75 absolute z-10 items-center justify-center flex">
-            <div role="status">
-            <svg aria-hidden="true" class="w-8 h-8 text-gray-600 animate-spin dark:text-gray-600 fill-white" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
-            </svg>
-            <span class="sr-only">Loading...</span>
-        </div>
-      </div>
-    <div class="w-[40%] h-[300px] mx-auto bg-gray-300 border border-[#DFDFDF] shadow-lg rounded shadow-[#DFDFDF] my-[70px] pt-[70px] px-[55px] pb-6">
-        <h1 class="font-bold font- text-[29px] leading-[20px] text-gray-600  ">Login with your Google account</h1>
-        
-        <div class="mt-[60px] w-full flex items-center">
-            <button @click="login()" class="w-full bg-[#F7F7F7] rounded py-3 mr-2.5">
-                <img src="@/assets/images/google.svg" alt="google.svg" class="mx-auto w-12 h-12">
-            </button>
-            
-        </div> 
-       
-    </div>-->
 
-    <section class="bg-gray-50 dark:bg-gray-900">
+
+              
+    <body>
+        <section class="flex flex-col md:flex-row h-screen items-center">
+
             <div
-                class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                <img  src="@/assets/images/bot.png" alt="logo" class="h-[50px] w-[50px] mb-5 mx-auto border-b border-[#D8D8D8]">
-                
-                <div
-                    class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-                    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <h1
-                            class="text-xl font-bold leading-tight tracking-tight text-gray-600 md:text-2xl dark:text-white text-center">
-                            Login/Sign Up <br>with your Google account
-                        </h1>
-                        <form class="space-y-4 md:space-y-6" action="#">
-                            <button @click="login()"
-                                class="w-full text-white bg-blue-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign
-                                in with Google</button>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-start">
-                                    <div class="flex items-center h-5">
-                                        <input id="remember"
-                                            aria-describedby="remember"
-                                            type="checkbox"
-                                            class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                                            required>
-                                    </div>
-                                    <div class="ml-3 text-sm">
-                                        <label 
-                                            class="text-gray-500 dark:text-gray-300">Remember
-                                            me</label>
-                                    </div>
-                                </div>
-                                <a href="#"
-                                    class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot
-                                    password?</a>
-                            </div>
-                            <!-- <p
-                                class="text-sm font-light text-gray-500 dark:text-gray-400">
-                                Don’t have an account yet? <a href="#"
-                                    class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign
-                                    up</a>
-                            </p> -->
-                        </form>
-                    </div>
+                class="bg-blue-600 lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
+                <img
+                    src="@/assets/images/login-law.png"
+                    alt class="w-full h-full object-cover">
+            </div>
+
+            <div
+                class="bg-white w-full md:max-w-md lg:max-w-full md:mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12
+                  flex items-center justify-center">
+
+                <div class="w-full h-100">
+
+                    <h1 class="text-xl font-bold">ONDC Law Compliance</h1>
+
+                    <h1
+                        class="text-xl md:text-2xl font-bold leading-tight mt-12">Log
+                        in to your account</h1>
+
+                    <form class="mt-6" action="#" method="POST">
+                        <div>
+                            <label class="block text-gray-700">Email Address</label>
+                            <input type="email" name id
+                                placeholder="Enter Email Address"
+                                class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                                autofocus autocomplete required>
+                        </div>
+
+                        <div class="mt-4">
+                            <label class="block text-gray-700">Password</label>
+                            <input type="password" name id
+                                placeholder="Enter Password" minlength="6"
+                                class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
+                          focus:bg-white focus:outline-none" required>
+                        </div>
+
+                        <div class="text-right mt-2">
+                            <a href="#"
+                                class="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700">Forgot
+                                Password?</a>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full block bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg
+                        px-4 py-3 mt-6">Log In</button>
+                    </form>
+
+                    <hr class="my-6 border-gray-300 w-full">
+
+                    <button type="button" @click="login()"
+                        class="w-full block bg-white hover:bg-gray-100 focus:bg-gray-100 text-gray-900 font-semibold rounded-lg px-4 py-3 border border-gray-300">
+                        <div class="flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                class="w-6 h-6" viewBox="0 0 48 48"><defs><path
+                                        id="a"
+                                        d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z" /></defs><clippath
+                                    id="b"><use xlink:href="#a"
+                                        overflow="visible" /></clippath><path
+                                    clip-path="url(#b)" fill="#FBBC05"
+                                    d="M0 37V11l17 13z" /><path
+                                    clip-path="url(#b)" fill="#EA4335"
+                                    d="M0 11l17 13 7-6.1L48 14V0H0z" /><path
+                                    clip-path="url(#b)" fill="#34A853"
+                                    d="M0 37l30-23 7.9 1L48 0v48H0z" /><path
+                                    clip-path="url(#b)" fill="#4285F4"
+                                    d="M48 48L17 24l-4-3 35-10z" /></svg>
+                            <span class="ml-4">
+                                Log in
+                                with
+                                Google</span>
+                        </div>
+                    </button>
+
+                    <p class="mt-8">Need an account? <a href="#"
+                            class="text-blue-500 hover:text-blue-700 font-semibold">Create
+                            an
+                            account</a></p>
+
+                    <p class="text-sm text-gray-500 mt-12">&copy; 2024 ONDC Law
+                        Complaince - CYDRA TECH
+                        All Rights Reserved.</p>
                 </div>
             </div>
+
         </section>
+    </body>
 
-
-<!-- </body> -->
- 
 
 </template>
 
-<style>
-@import '@/assets/css/output.css';
-</style>
+
 
 <script setup>
 import { onMounted,ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 import {useServerStore} from '@/stores/server'
-
+// import 'https://cdn.tailwindcss.com'
+// import 'https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries'
 const useServer = useServerStore()
 const router = useRouter()
 const isBusy = ref(false)
