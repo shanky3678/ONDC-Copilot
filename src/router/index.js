@@ -23,26 +23,28 @@ const router = createRouter({
       path: "/main",
       name: "Main",
       component: MainView,
-      meta: { requiresAuth: false },
+      meta: { requiresAuth: true },
+
     },
     {
       path: "/law-data",
       name: "LawDataTable",
       component: LawDataTable,
-      meta: { requiresAuth: false },
+      meta: { requiresAuth: true },
+
     },
     {
       path: "/law-data-view",
       name: "LawDataTableView",
       component: LawDataTableView,
-      meta: { requiresAuth: false },
+      meta: { requiresAuth: true },
+
     },
     {
       path: "/home",
       name: "Home",
       component: HomeView,
-      meta: { requiresAuth: true },
-      props: (route) => ({ showSideBar: route.params.showSideBar }),
+      meta: { requiresAuth: true }
     },
     {
       path: "/login",
@@ -83,7 +85,7 @@ router.beforeEach(async (to, from, next) => {
 
   // let data = await server.checkIfAccessTokenIsExistAndValid()
   
-  if (to.path === "/login" || to.path === "/main" || to.path === "/law-data" || to.path === "/law-data-view") {
+  if (to.path === "/login" ) {
     server.setUniBusy(false);
     next(); // Allow navigation to the login route
    

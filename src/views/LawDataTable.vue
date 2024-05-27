@@ -3,19 +3,23 @@
     <div
       class="pl-8 pr-[60px] py-2 flex justify-between items-center shadow-lg sticky"
     >
+    <RouterLink to="/main">
+
+      
       <div class="flex items-center">
         <img
-          class="h-[50px] w-[50px]"
-          src="@/assets/images/bot.png"
-          alt="logo"
+        class="h-[50px] w-[50px]"
+        src="@/assets/images/bot.png"
+        alt="logo"
         />
         <p class="ml-3 font-normal text-[#1F263E] text-[19px]">
           ONDC <br />
           DASHBOARD
         </p>
       </div>
+    </RouterLink>
       <div class="flex items-center">
-        <!-- <Navbar /> -->
+        <Navbar />
       </div>
     </div>
     <!-- component -->
@@ -79,7 +83,7 @@
               <input
               v-model="search_dept"
                 placeholder="Department"
-                class="appearance-none h-full border border-gray-400 border-b block pl-2 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
+                class="appearance-none z-0 h-full border border-gray-400 border-b block pl-2 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
               />
             </div>
             <div class="block relative">
@@ -87,7 +91,7 @@
                 type="number"
                 v-model="search_act_number"
                 placeholder="ACT Number"
-                class="appearance-none h-full rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-2 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
+                class="appearance-none z-0 h-full rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-2 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
               />
             </div>
             <div class="relative">

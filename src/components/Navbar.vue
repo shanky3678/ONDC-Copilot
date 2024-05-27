@@ -8,9 +8,9 @@
                         <p class="bg-[#F56C89] px-2 py-1 rounded-[50%] absolute -top-4 -right-3 text-sm text-white">1</p>
                     </button>
                 
-                    <div class="ml-7 error">
+                    <!-- <div class="ml-7 error">
                         <img class="h-[50px] w-[50px]" src="@/assets/images/INDIA.svg" alt="bell-icon">
-                    </div>
+                    </div> -->
                     <div @mouseenter="onPressProfileBtn()" class="ml-7 mt-[5px] profile">
                         <button  type="button">
                             <img class="h-[50px] w-[50px] rounded-full" :src="profile" alt="">

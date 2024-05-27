@@ -4,13 +4,18 @@
         <div>
             <div
                 class="pl-8 pr-[60px] py-2 flex justify-between items-center shadow-lg sticky">
-                <div class="flex items-center">
-                <img class="h-[50px] w-[50px]" src="@/assets/images/bot.png" alt="logo">
-                    
-                    <p class="ml-3 font-normal text-[#1F263E] text-[19px]">ONDC
-                        <br> DASHBAORD</p>
+       <RouterLink to="/main">
+
+           
+           <div class="flex items-center">
+               <img class="h-[50px] w-[50px]" src="@/assets/images/bot.png" alt="logo">
+               
+               <p class="ml-3 font-normal text-[#1F263E] text-[19px]">ONDC
+                   <br> DASHBAORD</p>
                 </div>
+            </RouterLink>
                 <div class="flex items-center">
+                    <Navbar />
                 </div>
             </div>
         </div>
@@ -400,8 +405,8 @@
 <script setup>
 import '@/views/LawDataTableView/script.js';
 import 'https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js'
-import pdfTester from '@/assets/zerossl.pdf'
 import { useServerStore } from "@/stores/server";
+import Navbar from '@/components/Navbar.vue';
 
 import { useRoute } from 'vue-router';
 import { onMounted, ref,computed } from 'vue';

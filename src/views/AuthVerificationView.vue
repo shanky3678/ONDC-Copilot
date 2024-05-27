@@ -43,9 +43,9 @@ const token = route.query.token;
 onMounted( async () => {
     let response = await useServer.verifyAndStoreAccessToken(token)
     if(response){
-        router.push({ name: 'Home' });
-    }else{
         router.push({ name: 'Main' });
+    }else{
+        router.push({ name: 'Login' });
     }
 })
 

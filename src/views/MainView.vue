@@ -6,8 +6,7 @@
                 <p class="ml-3 font-normal text-[#1F263E] text-[19px]">ONDC <br> DASHBOARD </p>
             </div>
             <div class="flex items-center">
-                <img src="@/assets/images/INDIA.svg" alt="chat" class="ml-7">
-                <img src="@/assets/images/Profile.svg" alt="chat" class="ml-7">
+                
             </div>
         </div>
         <div class="flex w-full pt-10 pl-20 overflow-y-hidden h-[calc(100vh-84px)]">
@@ -18,7 +17,7 @@
                                 class="w-fit bg-[#E7F6FF] rounded-[26px] py-[10px] px-4 flex items-center "
                                 style="font-weight: 400; font-size: 14px; color: #193E6C; ">
 
-                                Upload or Verify Laws to our database<p
+                                Upload or Verify Laws to our database<p @click="navTo('Defender')"
                                     class="w-[86px] py-[6px] rounded-[26px] bg-[#094B72] ml-2 text-center"
                                     style="font-weight: 400; font-size: 12px; color: white;">Click
                                     Here</p>
@@ -34,10 +33,12 @@
                                 class="border border-[#094B72] mr-[15px] bg-[#E7F6FF] py-7 px-5 rounded-lg w-[300px] text-[18px] font-extrabold text-[#094B72]">Check
                                 laws for my product</button>
                             </RouterLink>
-                            
-                            <button @click="navTo('ChatDoubt')"
+                            <router-link to="/home?showSlideBar=false" >
+
+                                <button 
                                 class="border border-[#094B72] mr-[15px] bg-[#E7F6FF] py-7 px-5 rounded-lg w-[300px] text-[18px] font-extrabold text-[#094B72]">Ask
                                 legal doubts</button>
+                            </router-link>
                         </div>
                         <div class="flex items-center mt-5 w-full">
                             <button @click="navTo('Home')"

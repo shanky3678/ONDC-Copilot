@@ -2,10 +2,14 @@
     <div>
 
         <div class="pl-8 pr-[60px] py-2 flex justify-between items-center">
-            <div class="flex items-center">
-                <img class="h-[50px] w-[50px]" src="@/assets/images/bot.png" alt="logo">
-                <p class="ml-3 font-normal text-[#1F263E] text-[19px]">ONDC <br> DASHBOARD</p>
+       <RouterLink to="/main">
+
+           
+           <div class="flex items-center">
+               <img class="h-[50px] w-[50px]" src="@/assets/images/bot.png" alt="logo">
+               <p class="ml-3 font-normal text-[#1F263E] text-[19px]">ONDC <br> DASHBOARD</p>
             </div>
+        </RouterLink>
            <Navbar />
         </div>
         <div class="w-full bg-[#d1cccc2e] relative pt-[64px] pl-10 pr-[62px] pb-11 flex h-custom h2 overflow-auto sidebar">
