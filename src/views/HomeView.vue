@@ -141,7 +141,7 @@
                     <div>
                       <button
                         @click="sendMessage"
-                        type="submit"
+                        type="button"
                         class="py-3 px-5 w-full text-sm font-medium text-center even:rounded-lg border cursor-pointer bg-primary-700 sm:rounded-none sm:rounded-r-lg ring-2"
                       >
                         Submit
@@ -546,7 +546,7 @@ import { onMounted, ref, onUnmounted, computed } from "vue";
 
 import Navbar from "@/components/Navbar.vue";
 import "@/assets/js/lib/jquery-3.2.1.min.js";
-import "@/assets/js/lib/tw-elements/dist/js/index.min.js";
+// import "@/assets/js/lib/tw-elements/dist/js/index.min.js";
 import { Tooltip, initTE, Dropdown } from "tw-elements";
 import * as constant from "@/shared/constant";
 import defaultImage from "@/assets/images/userPro.png";
