@@ -603,7 +603,6 @@ const imageUrl = ref([]);
 const imageLimitCrossed = ref(false);
 const showUploadFile = ref(false);
 const showSideBar = ref(true);
-import defaultImage from '@/assets/images/userPro.png'
 
 
 
