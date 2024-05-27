@@ -1,6 +1,6 @@
 <template>
-    <body class="flex flex-col justify-center items-center h-screen">
-       <div v-show="isBusy" class="h-full w-full bg-black opacity-75 absolute z-10 items-center justify-center flex">
+    <!-- <body class="flex flex-col justify-center items-center h-screen"> -->
+       <!-- <div v-show="isBusy" class="h-full w-full bg-black opacity-75 absolute z-10 items-center justify-center flex">
             <div role="status">
             <svg aria-hidden="true" class="w-8 h-8 text-gray-600 animate-spin dark:text-gray-600 fill-white" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
@@ -11,35 +11,65 @@
       </div>
     <div class="w-[40%] h-[300px] mx-auto bg-gray-300 border border-[#DFDFDF] shadow-lg rounded shadow-[#DFDFDF] my-[70px] pt-[70px] px-[55px] pb-6">
         <h1 class="font-bold font- text-[29px] leading-[20px] text-gray-600  ">Login with your Google account</h1>
-        <!-- <h1 class="mt-3.5 text-[#545454] font-normal text-[14px] leading-[14px] font-IBM">Only one of the option to go</h1> -->
-        <!-- <div class="mt-10">
-            <div class="w-full">
-                <label for=""></label>
-                <input type="text" class="w-full text-base font-medium text-[#0C0C0C] border-[#E6E6E6] outline-0 rounded-[5px] focus:border-[#8AC0FF] border py-5 px-[18px] placeholder:text-[#4F4F4F] placeholder:font-normal placeholder:text-base" placeholder="Email">
-            </div>
-            <div class="mt-5 w-full">
-                <label for=""></label>
-                <input type="text" class="w-full text-base font-medium text-[#0C0C0C] border-[#E6E6E6] outline-0 rounded-[5px] focus:border-[#8AC0FF] border py-5 px-[18px] placeholder:text-[#4F4F4F] placeholder:font-normal placeholder:text-base" placeholder="Password">
-            </div>
-        </div>
-         <div class="mt-10 flex justify-center w-[60%] mx-auto">
-            <button type="button" class="bg-[#5D81F3] rounded px-[65px] py-4"><h1 class="text-white text-base font-normal">Log in</h1></button>
-        </div> 
-        <p class="mt-8 text-[#4F4F4F] font-medium text-base">Continue with</p> -->
+        
         <div class="mt-[60px] w-full flex items-center">
             <button @click="login()" class="w-full bg-[#F7F7F7] rounded py-3 mr-2.5">
                 <img src="@/assets/images/google.svg" alt="google.svg" class="mx-auto w-12 h-12">
             </button>
-            <!-- <button class="w-1/3 bg-[#F7F7F7] rounded py-3 mr-2.5">
-                <img src="@/assets/images/facebook-meta.svg" alt="google.svg" class="mx-auto w-12 h-12">
-            </button>
-            <button class="w-1/3 bg-[#F7F7F7] rounded py-3">
-                <img src="@/assets/images/apple.svg" alt="google.svg" class="mx-auto w-12 h-12">
-            </button> -->
-        </div>
+            
+        </div> 
        
-    </div>
-</body>
+    </div>-->
+
+    <section class="bg-gray-50 dark:bg-gray-900">
+            <div
+                class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+                <img  src="@/assets/images/bot.png" alt="logo" class="h-[50px] w-[50px] mb-5 mx-auto border-b border-[#D8D8D8]">
+                
+                <div
+                    class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                        <h1
+                            class="text-xl font-bold leading-tight tracking-tight text-gray-600 md:text-2xl dark:text-white text-center">
+                            Login/Sign Up <br>with your Google account
+                        </h1>
+                        <form class="space-y-4 md:space-y-6" action="#">
+                            <button @click="login()"
+                                class="w-full text-white bg-blue-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign
+                                in with Google</button>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-start">
+                                    <div class="flex items-center h-5">
+                                        <input id="remember"
+                                            aria-describedby="remember"
+                                            type="checkbox"
+                                            class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                                            required>
+                                    </div>
+                                    <div class="ml-3 text-sm">
+                                        <label 
+                                            class="text-gray-500 dark:text-gray-300">Remember
+                                            me</label>
+                                    </div>
+                                </div>
+                                <a href="#"
+                                    class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot
+                                    password?</a>
+                            </div>
+                            <!-- <p
+                                class="text-sm font-light text-gray-500 dark:text-gray-400">
+                                Don’t have an account yet? <a href="#"
+                                    class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign
+                                    up</a>
+                            </p> -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+<!-- </body> -->
  
 
 </template>
@@ -57,6 +87,13 @@ import {useServerStore} from '@/stores/server'
 const useServer = useServerStore()
 const router = useRouter()
 const isBusy = ref(false)
+const props = defineProps({
+    navTo: {
+        type: String,
+        default: ''
+    }
+}
+)
 
 onMounted( async () => {
     let response = await useServer.checkIfAccessTokenIsExistAndValid()
@@ -65,12 +102,10 @@ onMounted( async () => {
     }
 })
 
+
 async function login(){
     let resposne = await useServer.login()
     window.open(resposne['url'], '_self');
 }
-
-
-
 
 </script>

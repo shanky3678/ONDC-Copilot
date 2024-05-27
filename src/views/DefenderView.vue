@@ -13,39 +13,9 @@
         <div class="pl-8 pr-[60px] py-2 flex justify-between items-center">
             <div class="flex items-center">
                 <img class="h-[50px] w-[50px]" src="@/assets/images/bot.png" alt="logo">
-                <p class="ml-3 font-normal text-[#1F263E] text-[19px]">ONDC <br> DASHBAORD</p>
+                <p class="ml-3 font-normal text-[#1F263E] text-[19px]">ONDC DASHBOARD</p>
             </div>
-            <div class="flex items-center">
-                <button type="button" class="relative">
-                    <img src="@/assets/images/Shape.svg" alt="bell-icon">
-                    <p class="bg-[#F56C89] px-2 py-1 rounded-[50%] absolute -top-4 -right-3 text-sm text-white">1</p>
-                </button>
-                <img src="@/assets/images/Setting.svg" alt="chat" class="ml-7">
-                <img class="ml-7" src="@/assets/images/INDIA.svg" alt="logo">
-                <button @click="onPressProfileBtn()" type="button" class="ml-7">
-                            <img src="@/assets/images/Profile.svg" alt="bell-icon">
-                        </button>
-                        <ul v-show="showProfileMenu"
-                            class="list w-[400px] h-[300px] absolute top-[60px] right-12 rounded-[18px] shadow-xl border border-[#BABABA] p-12 bg-white z-[99]">
-                            <RouterLink to="/home">
-                                <li class="font-bold text-lg text-[#979797] ">Home</li>
-                            </RouterLink>
-
-                            <RouterLink to="/defender">
-                                <li class="mt-9 font-bold text-lg  text-[#5D81F3]">ONDC Law Defender</li>
-                            </RouterLink>
-
-                            <button type="button" data-te-toggle="modal" data-te-target="#rankingpop"
-                            data-te-ripple-init data-te-ripple-color="light" >
-                            <li class="mt-9 font-bold text-lg text-[#979797]">Ranking</li>
-                            </button><br>
-
-                            <button @click="logoutFun()" >
-                            <li class="mt-9 font-bold text-lg text-[#979797]">Logout</li>
-                            </button>
-                            
-                        </ul>
-            </div>
+            <Navbar />
         </div>
         <div class="w-full bg-[#d1cccc2e] h-customh2 relative">
             <div class="w-full flex justify-end pr-10">
@@ -70,7 +40,9 @@
             </div>
             <div class="w-full absolute bottom-10">
                 <div class="flex flex-col mx-auto items-center justify-center">
-                    <button type="button" data-te-toggle="modal" data-te-target="#rankingpop"
+                    <button
+                    @click="getRanking"
+                    type="button" data-te-toggle="modal" data-te-target="#rankingpop"
                             data-te-ripple-init data-te-ripple-color="light" >
                             <p  class="font-extrabold text-xl text-[#9A9B9F] text-center"><u>Check Ranking</u></p>
                             </button>
@@ -115,6 +87,7 @@ import { useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
 import { Modal,Popconfirm,initTE} from "tw-elements";
 import {useServerStore} from '@/stores/server';
+import Navbar from '@/components/Navbar.vue';
 
 const server = useServerStore();
 const router = useRouter();
@@ -126,20 +99,16 @@ onMounted( () => {
     initTE({ Modal,Popconfirm });
 })
 
-function onPressProfileBtn() {
-    showProfileMenu.value = !showProfileMenu.value
-    console.log(showProfileMenu.value)
-}
  
 function navToDatabase(){
     router.push({name: 'Database'})
-
 }
 
-function logoutFun(){
-    server.logout()
-    router.push({name: 'Login'})
+async function getRanking(){
+    console.log("getRanking")
+    console.log(await server.fetchRanking())
 }
+
 
 function navToVerification(){
     router.push({name: 'Verification'})
