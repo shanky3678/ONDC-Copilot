@@ -350,7 +350,13 @@ const search = async() =>{
     console.log(search_state.value, search_act_number.value, search_dept.value)
     documents.value = []
     
-    documents.value = await server.getPageDocuments(page_count.value,10, [search_state.value.toString()],!isEmptyOrNull(search_act_number.value) ? [search_act_number.value.toString()] : [], "", search_dept.value )
+    documents.value = await server.getPageDocuments(
+      page_count.value,
+    10, 
+    !isEmptyOrNull(search_state.value) ?[search_state.value.toString()]: [],
+    !isEmptyOrNull(search_act_number.value) ? [search_act_number.value.toString()] : [],
+     "",
+      search_dept.value )
     total_page_count.value = await server.getPageCount(10,[search_state.value.toString()],!isEmptyOrNull(search_act_number.value) ? [search_act_number.value.toString()] : [],"", search_dept.value);
   }
 }

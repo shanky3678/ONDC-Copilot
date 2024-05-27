@@ -261,6 +261,7 @@ export const useServerStore = defineStore("server", () => {
       short_title: short_title,
       act_department: act_department,
     })
+    console.log("raw", raw)
     let requestOptions = {
       method: "POST",
       headers: myHeaders,
