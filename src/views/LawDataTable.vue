@@ -58,29 +58,28 @@
 
               
             </div>
-            <div class="block relative">
+            <div class=" ">
               <input
               v-model="search_dept"
                 placeholder="Department"
-                class="appearance-none z-0 h-full border border-gray-400 border-b block pl-2 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
+                class="  h-full border border-gray-400 border-b block pl-2 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
               />
             </div>
-            <div class="block relative">
+            <div class="">
               <input
                 type="number"
                 v-model="search_act_number"
                 placeholder="ACT Number"
-                class="appearance-none z-0 h-full rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-2 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
+                class=" h-full rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-2 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
               />
             </div>
             <div class="relative">
-              <button
+              <button  
               @click="search"
-                type="button"
-                class="ml-3 py-3 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 text-center me-2 mb-2"
-              >
+                class="px-4 py-2 mr-1 mb-1 bg-[#084acf]  outline-none rounded shadow text-white text-xs font-bold uppercase focus:outline-none hover:shadow-md active:bg-gray-600">
                 Submit
               </button>
+              
             </div>
           </div>
 
@@ -215,10 +214,96 @@
       </div>
     </body>
   </div>
+  <div
+    data-te-modal-init
+    class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
+    id="rankingpop"
+    tabindex="-1"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-modal="true"
+    role="dialog"
+  >
+    <div
+      data-te-modal-dialog-ref
+      class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-[580px] translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[600px]"
+    >
+      <!--Modal body-->
+      <div class="relative w-full">
+        <!-- //ranking code -->
+        <section>
+          <div class="w-[420px] bg-white p-8 rounded-2xl flex flex-col gap-5">
+              <button
+                data-te-modal-dismiss
+                aria-label="Close"
+                type="button"
+                class="ms-auto bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+              >
+                <span class="sr-only">Close</span>
+                <svg
+                  class="w-3 h-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 14"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                  />
+                </svg>
+              </button>
+            <h1 class="text-xl text-gray-500">Leader Board Ranking</h1>
+            <div class="relative overflow-x-auto">
+              <table
+                class="w-full text-sm text-left rtl:text-right text-gray-500"
+              >
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                  <tr>
+                    <th scope="col" class="px-2 py-3">Postions</th>
+                    <th scope="col" class="px-6 py-3">Name</th>
+                    <th scope="col" class="px-6 py-3">Points</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(data, index) of ranking" :key="index" class="bg-white border-b">
+                    <th
+                      scope="row"
+                      class="py-4 font-medium text-gray-900 text-center"
+                    >
+                      {{ index }}
+                    </th>
+                    <td class="px-6 py-4 flex items-center space-x-2">
+                      <div class="flex items-center">
+                        <img
+                          :src="data.user_image != null ? data.user_image : defaultImage"
+                          alt="User Avatar"
+                          class="w-8 h-8 rounded-full mr-4 object-cover"
+                        />
+                        <span class="text-gray-800 font-semibold"
+                          > {{ data.user_name }}</span
+                        >
+                      </div>
+                    </td>
+                    <td class="px-6 py-4">{{data.user_points}} pt</td>
+                  </tr>
+              
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
 import Navbar from "@/components/Navbar.vue";
+import { Modal, Popconfirm, initTE } from "tw-elements";
+
 import { onMounted } from "vue";
 import { useServerStore } from "@/stores/server";
 import { ref, watch } from "vue";
@@ -234,10 +319,13 @@ const documents = ref([]);
 const search_act_number = ref("");
 const search_dept = ref("");
 const search_state = ref("");
+const ranking = ref({});
 
 
-onMounted(() => {
-  initialRun();
+onMounted(async() => {
+  initTE({ Modal, Popconfirm });
+  initialRun();ranking.value = await server.fetchRanking()
+
 });
 
 watch(search_state, (value) => {
@@ -260,9 +348,8 @@ const search = async() =>{
     console.log(search_state.value, search_act_number.value, search_dept.value)
     documents.value = []
     
-    documents.value = await server.getPageDocuments(page_count.value,10, [],!isEmptyOrNull(search_act_number.value) ? [search_act_number.value.toString()] : [], "", search_dept.value )
-    total_page_count.value = await server.getPageCount(10,[],!isEmptyOrNull(search_act_number.value) ? [search_act_number.value.toString()] : [],"", search_dept.value);
-  
+    documents.value = await server.getPageDocuments(page_count.value,10, [search_state.value.toString()],!isEmptyOrNull(search_act_number.value) ? [search_act_number.value.toString()] : [], "", search_dept.value )
+    total_page_count.value = await server.getPageCount(10,[search_state.value.toString()],!isEmptyOrNull(search_act_number.value) ? [search_act_number.value.toString()] : [],"", search_dept.value);
   }
 }
 

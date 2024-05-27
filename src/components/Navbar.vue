@@ -1,5 +1,5 @@
 <template>
-    <div class="h-[70px] w-full bg-white flex justify-between items-center pl-[30px] py-3 pr-[20px]">
+    <div class="h-[70px] w-full bg-white flex justify-between items-center pl-[30px] py-3 pr-[20px] ">
                 <div >
                     </div>
                 <div class="flex items-center">
@@ -11,7 +11,7 @@
                     <!-- <div class="ml-7 error">
                         <img class="h-[50px] w-[50px]" src="@/assets/images/INDIA.svg" alt="bell-icon">
                     </div> -->
-                    <div @mouseenter="onPressProfileBtn()" class="ml-7 mt-[5px] profile">
+                    <div @mouseenter="onPressProfileBtn()" class="ml-7 mt-[5px] profile ">
                         <button  type="button">
                             <img class="h-[50px] w-[50px] rounded-full" :src="profile" alt="">
                         </button>

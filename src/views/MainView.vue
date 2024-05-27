@@ -6,7 +6,7 @@
                 <p class="ml-3 font-normal text-[#1F263E] text-[19px]">ONDC <br> DASHBOARD </p>
             </div>
             <div class="flex items-center">
-                
+                <Navbar />
             </div>
         </div>
         <div class="flex w-full pt-10 pl-20 overflow-y-hidden h-[calc(100vh-84px)]">
@@ -39,15 +39,18 @@
                             </RouterLink>
                         </div>
                         <div class="flex items-center mt-5 w-full">
-                            <RouterLink to="/home?showUploadFile=true">
+                            <RouterLink to="/home?showUploadFile=true&type=package"  >
 
-                                <button @click="navTo('Home')"
+                                <button 
                                 class="border border-[#094B72] mr-[15px] text-[#FFFFFF] py-7 px-5 rounded-lg w-[300px] text-[18px] font-extrabold bg-[#094B72]">Ask
                                 with product image</button>
                             </RouterLink>
-                            <button @click="navTo('Defender')"
+                            <RouterLink to="/defender">
+
+                                <button
                                 class="border border-[#094B72] mr-[15px] text-[#FFFFFF] py-7 px-5 rounded-lg w-[300px] text-[18px] font-extrabold bg-[#094B72]">Upload/Verify
                                 laws</button>
+                            </RouterLink>
                         </div>
                     </div>
                     <div class="my-10">
@@ -62,13 +65,102 @@
             </div>
         </div>
     </div>
+    <div
+    data-te-modal-init
+    class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
+    id="rankingpop"
+    tabindex="-1"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-modal="true"
+    role="dialog"
+  >
+    <div
+      data-te-modal-dialog-ref
+      class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-[580px] translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[600px]"
+    >
+      <!--Modal body-->
+      <div class="relative w-full">
+        <!-- //ranking code -->
+        <section>
+          <div class="w-[420px] bg-white p-8 rounded-2xl flex flex-col gap-5">
+              <button
+                data-te-modal-dismiss
+                aria-label="Close"
+                type="button"
+                class="ms-auto bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+              >
+                <span class="sr-only">Close</span>
+                <svg
+                  class="w-3 h-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 14"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                  />
+                </svg>
+              </button>
+            <h1 class="text-xl text-gray-500">Leader Board Ranking</h1>
+            <div class="relative overflow-x-auto">
+              <table
+                class="w-full text-sm text-left rtl:text-right text-gray-500"
+              >
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                  <tr>
+                    <th scope="col" class="px-2 py-3">Postions</th>
+                    <th scope="col" class="px-6 py-3">Name</th>
+                    <th scope="col" class="px-6 py-3">Points</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(data, index) of ranking" :key="index" class="bg-white border-b">
+                    <th
+                      scope="row"
+                      class="py-4 font-medium text-gray-900 text-center"
+                    >
+                      {{ index }}
+                    </th>
+                    <td class="px-6 py-4 flex items-center space-x-2">
+                      <div class="flex items-center">
+                        <img
+                          :src="data.user_image != null ? data.user_image : defaultImage"
+                          alt="User Avatar"
+                          class="w-8 h-8 rounded-full mr-4 object-cover"
+                        />
+                        <span class="text-gray-800 font-semibold"
+                          > {{ data.user_name }}</span
+                        >
+                      </div>
+                    </td>
+                    <td class="px-6 py-4">{{data.user_points}} pt</td>
+                  </tr>
+              
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
 </template>
 <script setup>
 
 import { useRouter } from 'vue-router';
 import { useServerStore } from '@/stores/server';
 import { isEmptyOrNull } from '@/shared/utils';
+import Navbar from '@/components/Navbar.vue';
+
+import { onMounted ,ref} from 'vue';
 const router = useRouter()
+
+const ranking = ref({})
 const server = useServerStore()
 
 const navTo = (value) => {
@@ -85,5 +177,9 @@ const navTo = (value) => {
             })
         }
 }
+
+onMounted(async ()=>{
+    ranking.value = await server.fetchRanking()
+})
 
 </script>

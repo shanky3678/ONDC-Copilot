@@ -408,18 +408,23 @@ import 'https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js'
 import { useServerStore } from "@/stores/server";
 import Navbar from '@/components/Navbar.vue';
 
+
 import { useRoute } from 'vue-router';
 import { onMounted, ref,computed } from 'vue';
 import { isEmptyOrNull } from '@/shared/utils';
+import defaultImage from '@/assets/images/userPro.png'
+
 
 const route = useRoute();
 const documentDetails = ref(null);
 const server = useServerStore();
 const stateMapping = ref({});
-
+const ranking = ref({});
 
 onMounted(async() => {
     const documentId = route.query.id;
+    ranking.value = await server.fetchRanking()
+
     if (documentId) {
         try {
             stateMapping.value = await server.getStateMapping();

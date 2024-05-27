@@ -267,36 +267,90 @@
             </div>
         </div>
 
-        <div data-te-modal-init
-            class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
-            id="rankingpop" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-modal="true" role="dialog">
-            <div data-te-modal-dialog-ref
-                class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-[580px] translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[600px]">
-                <div
-                    class="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600 px-16 py-[60px]">
-                    <button type="button"
-                        class=" absolute top-4 right-5 box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
-                        data-te-modal-dismiss aria-label="Close">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="h-6 w-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-
-                    <!--Modal body-->
-                    <div class="relative w-full">
-                        <p class="font-semibold text-[29px] text-center">Ranking will appear once enough users upload
-                            Laws/Regulation</p>
-                        <p class="font-semibold text-[29px] text-center">Will Redirect in 3 sec..</p>
-
-                        <button type="button" data-te-modal-dismiss aria-label="Close"
-                            class="w-[182px] h-[64px] font-semibold text-[29px] leading-[35px] text-white rounded mt-12 mx-auto bg-[#5D81F3] flex justify-center items-center">
-                            Okay
-                        </button>
-                    </div>
-                </div>
+        <div
+    data-te-modal-init
+    class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
+    id="rankingpop"
+    tabindex="-1"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-modal="true"
+    role="dialog"
+  >
+    <div
+      data-te-modal-dialog-ref
+      class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-[580px] translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[600px]"
+    >
+      <!--Modal body-->
+      <div class="relative w-full">
+        <!-- //ranking code -->
+        <section>
+          <div class="w-[420px] bg-white p-8 rounded-2xl flex flex-col gap-5">
+              <button
+                data-te-modal-dismiss
+                aria-label="Close"
+                type="button"
+                class="ms-auto bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+              >
+                <span class="sr-only">Close</span>
+                <svg
+                  class="w-3 h-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 14"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                  />
+                </svg>
+              </button>
+            <h1 class="text-xl text-gray-500">Leader Board Ranking</h1>
+            <div class="relative overflow-x-auto">
+              <table
+                class="w-full text-sm text-left rtl:text-right text-gray-500"
+              >
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                  <tr>
+                    <th scope="col" class="px-2 py-3">Postions</th>
+                    <th scope="col" class="px-6 py-3">Name</th>
+                    <th scope="col" class="px-6 py-3">Points</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(data, index) of ranking" :key="index" class="bg-white border-b">
+                    <th
+                      scope="row"
+                      class="py-4 font-medium text-gray-900 text-center"
+                    >
+                      {{ index }}
+                    </th>
+                    <td class="px-6 py-4 flex items-center space-x-2">
+                      <div class="flex items-center">
+                        <img
+                          :src="data.user_image != null ? data.user_image : defaultImage"
+                          alt="User Avatar"
+                          class="w-8 h-8 rounded-full mr-4 object-cover"
+                        />
+                        <span class="text-gray-800 font-semibold"
+                          > {{ data.user_name }}</span
+                        >
+                      </div>
+                    </td>
+                    <td class="px-6 py-4">{{data.user_points}} pt</td>
+                  </tr>
+              
+                </tbody>
+              </table>
             </div>
-        </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
     </div>
 </template>
 
@@ -307,7 +361,8 @@
 <script setup>
 import { onMounted, ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { Popconfirm, initTE } from 'tw-elements'
+import { Modal, Popconfirm, initTE } from "tw-elements";
+
 import { useServerStore } from '@/stores/server';
 import * as constant from '@/shared/constant'
 import { isEmptyOrNull } from '@/shared/utils'
@@ -326,10 +381,12 @@ const verify_remark = ref(null)
 const is_legit = ref(null)
 const showSubmitBtn = ref(false)
 const searchText = ref("")
+const ranking = ref({})
 
 onMounted(async () => {
-    initTE({ Popconfirm });
+    initTE({ Popconfirm, Modal });
     await fetchData()
+    ranking.value = await server.fetchRanking()
 })
 
 const searchResult = computed(() => {

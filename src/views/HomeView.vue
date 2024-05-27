@@ -14,9 +14,7 @@
         >
           <button
             @click="
-              () => {
-                showUploadFile = false;
-              }
+              closeFileUpload
             "
             type="button"
             class="bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
@@ -51,7 +49,7 @@
               class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50"
             >
               <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                <div class="w-[50px] h-[50px] mb-5">
+                <div class="w-[50px] h-[50px]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
@@ -90,7 +88,7 @@
               <div v-if="imageUrl.length > 0" class="flex">
                 <div
                   v-for="(image, index) in imageUrl"
-                  class="mt-1 h-[50px] w-[50px] flex"
+                  class="mb-4 h-[50px] w-[50px] flex"
                 >
                   <div class="ml-1 flex w-[50px]">
                     <img
@@ -99,7 +97,7 @@
                       class="max-w-full h-auto border rounded"
                     />
                     <button
-                      @click="closeFileUpload(index)"
+                      @click="removeImage(index)"
                       type="button"
                       class="ms-auto mr-2 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
                     >
@@ -331,6 +329,14 @@
                 <p class="ml-3 font-normal text-[#1F263E] text-[19px]">ONDC <br> DASHBOARD </p>
               </RouterLink>
             </div>
+            <div>
+              <RouterLink to="/law-data">
+                <button 
+                class="px-4 py-2 mr-1 mb-1 bg-[#084acf]  outline-none rounded shadow text-white text-xs font-bold uppercase focus:outline-none hover:shadow-md active:bg-gray-600">
+                All Laws
+              </button>
+            </RouterLink>
+            </div>
         </div>
             <div class="flex items-center">
                 
@@ -403,7 +409,7 @@
             </div>
           </div>
         </div>
-        <div v-if="imageUrl" class="flex">
+        <!-- <div v-if="imageUrl" class="flex">
           <div
             v-for="(image, index) in imageUrl"
             class="mt-4 h-[50px] w-[50px] flex"
@@ -438,7 +444,7 @@
               </button>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="mt-[18px] relative">
           <input
             @keydown.enter="sendMessage"
@@ -452,20 +458,19 @@
             @click="openUploadFile"
             class="flex items-center absolute right-16 top-[21px] cursor-pointer"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              class="w-6 h-6 text-gray-500"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 4v16m8-8H4"
-              />
-            </svg>
+          <div class="w-[20px] h-[20px]">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    id="Camera"
+                  >
+                    <path
+                      d="M10 8a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm8-3h-2.4a.888.888 0 0 1-.789-.57l-.621-1.861A.89.89 0 0 0 13.4 2H6.6c-.33 0-.686.256-.789.568L5.189 4.43A.889.889 0 0 1 4.4 5H2C.9 5 0 5.9 0 7v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-8 11a5 5 0 0 1-5-5 5 5 0 1 1 10 0 5 5 0 0 1-5 5zm7.5-7.8a.7.7 0 1 1 0-1.4.7.7 0 0 1 0 1.4z"
+                      fill="#7c7c7c"
+                      class="color000000 svgShape w-2 h-2 mb-4"
+                    ></path>
+                  </svg>
+                </div>
           </label>
 
           <img
@@ -497,45 +502,75 @@
       data-te-modal-dialog-ref
       class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-[580px] translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[600px]"
     >
-      <div
-        class="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600 px-16 py-[60px]"
-      >
-        <button
-          type="button"
-          class="absolute top-4 right-5 box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
-          data-te-modal-dismiss
-          aria-label="Close"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="h-6 w-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
-
-        <!--Modal body-->
-        <div class="relative w-full">
-          <p class="font-semibold text-[29px] text-center">
-            Ranking will appear once enough users upload Laws/Regulation
-          </p>
-          <button
-            type="button"
-            data-te-modal-dismiss
-            aria-label="Close"
-            class="w-[182px] h-[64px] font-semibold text-[29px] leading-[35px] text-white rounded mt-12 mx-auto bg-[#5D81F3] flex justify-center items-center"
-          >
-            Okay
-          </button>
-        </div>
+      <!--Modal body-->
+      <div class="relative w-full">
+        <!-- //ranking code -->
+        <section>
+          <div class="w-[420px] bg-white p-8 rounded-2xl flex flex-col gap-5">
+              <button
+             
+                data-te-modal-dismiss
+                aria-label="Close"
+                type="button"
+                class="ms-auto bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+              >
+                <span class="sr-only">Close</span>
+                <svg
+                  class="w-3 h-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 14"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                  />
+                </svg>
+              </button>
+            <h1 class="text-xl text-gray-500">Leader Board Ranking</h1>
+            <div class="relative overflow-x-auto">
+              <table
+                class="w-full text-sm text-left rtl:text-right text-gray-500"
+              >
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                  <tr>
+                    <th scope="col" class="px-2 py-3">Postions</th>
+                    <th scope="col" class="px-6 py-3">Name</th>
+                    <th scope="col" class="px-6 py-3">Points</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(data, index) of ranking" :key="index" class="bg-white border-b">
+                    <th
+                      scope="row"
+                      class="py-4 font-medium text-gray-900 text-center"
+                    >
+                      {{ index }}
+                    </th>
+                    <td class="px-6 py-4 flex items-center space-x-2">
+                      <div class="flex items-center">
+                        <img
+                          :src="data.user_image != null ? data.user_image : defaultImage"
+                          alt="User Avatar"
+                          class="w-8 h-8 rounded-full mr-4 object-cover"
+                        />
+                        <span class="text-gray-800 font-semibold"
+                          > {{ data.user_name }}</span
+                        >
+                      </div>
+                    </td>
+                    <td class="px-6 py-4">{{data.user_points}} pt</td>
+                  </tr>
+              
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   </div>
@@ -547,7 +582,7 @@ import { onMounted, ref, onUnmounted, computed } from "vue";
 import Navbar from "@/components/Navbar.vue";
 import "@/assets/js/lib/jquery-3.2.1.min.js";
 // import "@/assets/js/lib/tw-elements/dist/js/index.min.js";
-import { Tooltip, initTE, Dropdown } from "tw-elements";
+import { Tooltip, initTE, Dropdown, Modal } from "tw-elements";
 import * as constant from "@/shared/constant";
 import defaultImage from "@/assets/images/userPro.png";
 import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
@@ -568,6 +603,8 @@ const imageUrl = ref([]);
 const imageLimitCrossed = ref(false);
 const showUploadFile = ref(false);
 const showSideBar = ref(true);
+import defaultImage from '@/assets/images/userPro.png'
+
 
 
 let listBase64 = [];
@@ -584,15 +621,18 @@ const showSideBarClass = computed(() => {
   return showSideBar.value ? "w-[80%]" : "w-full";
 });
 
+
+
 const server = useServerStore();
 const router = useRoute();
-
-onMounted(() => {
-  initTE({ Tooltip, Dropdown });
+const ranking = ref({})
+onMounted(async() => {
+  initTE({ Tooltip, Dropdown,Modal });
   
   
   if (router.query.showUploadFile) {
     showUploadFile.value = router.query.showUploadFile;
+    router.query.showUploadFile == 'true' ? textarea.value = "is this product packaging compliant" : "What are the rules and regulations to sell this online?";
   }
   if (router.query) {
     console.log("showSideBar", router.query.showSideBar);
@@ -601,7 +641,7 @@ onMounted(() => {
       textarea.value = "";
     }
   }
-
+  ranking.value = await server.fetchRanking()
   initialConnection();
 });
 
@@ -613,12 +653,18 @@ const openUploadFile = () => {
   showUploadFile.value = !showUploadFile.value;
 };
 
+const closeFileUpload = () => {
+  showUploadFile.value = false;
+ imageUrl.value = []
+ listBase64 = []
+};
+
 const handleFileUpload = () => {
   if (
     inputFile.value.files &&
     inputFile.value.files.length > 0 &&
-    inputFile.value.files.length <= 2 &&
-    imageUrl.value.length <= 2
+    inputFile.value.files.length <= 5 &&
+    imageUrl.value.length <= 5
   ) {
     for (let i = 0; i < inputFile.value.files.length; i++) {
       imageUrl.value.push(URL.createObjectURL(inputFile.value.files[i]));
@@ -633,8 +679,8 @@ const handleFileUpload = () => {
 
       reader.readAsDataURL(file);
     }
-  } else if (inputFile.value.files.length > 3 && imageUrl.value.length > 3) {
-    inputFile.value.files[3] = null;
+  } else if (inputFile.value.files.length > 7 && imageUrl.value.length > 7) {
+    inputFile.value.files[5] = null;
     imageLimitCrossed.value = true;
     setTimeout(() => {
       imageLimitCrossed.value = false;
@@ -642,7 +688,7 @@ const handleFileUpload = () => {
   }
 };
 
-const closeFileUpload = (index) => {
+const removeImage = (index) => {
   if (imageUrl.value.length === 1) {
     imageUrl.value = [];
     listBase64.value = [];
@@ -739,6 +785,7 @@ const sendMessage = () => {
     textarea.value = "";
     listBase64 = [];
     imageUrl.value = [];
+    showUploadFile.value = false;
     setTimeout(() => {
       autoScrollDown();
     }, 500);
