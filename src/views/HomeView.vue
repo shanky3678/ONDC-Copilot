@@ -322,11 +322,13 @@
     
     <div class="min-w-[80%] w-[80%]" :class="showSideBarClass">
       <div class="pl-8 pr-[60px] py-2 flex justify-between items-center shadow-lg sticky">
-        <div class="flex items-center">
-            <div v-if="!showSideBar">
+        <div class="flex items-center w-full">
+            <div v-if="!showSideBar" >
           <RouterLink to="/main">
+               <div class="flex">
                 <img class="h-[50px] w-[50px]" src="@/assets/images/bot.png" alt="logo">
-                <p class="ml-3 font-normal text-[#1F263E] text-[19px]">ONDC <br> DASHBOARD </p>
+                <p class="ml-3 font-normal text-[#1F263E] text-[19px] mr-2">ONDC <br> DASHBOARD </p>
+               </div>
               </RouterLink>
             </div>
             <div>
@@ -338,10 +340,8 @@
             </RouterLink>
             </div>
         </div>
-            <div class="flex items-center">
-                
-              <Navbar />
-            </div>
+           
+            <Navbar />
         </div>
       <div class="bg-[#d1cccc2e] pl-7 pr-[35px] pb-7 pt-[40px]">
         <div
@@ -353,18 +353,18 @@
                     >
                     <img src="@/assets/images/bannerNew.png" alt="chat-bot" class=""></RouterLink> -->
           <div class="h-full bg-white">
-            <div class="rounded-[5px] flex-grow bg-white px-[46px] py-10">
+            <div class="rounded-[5px] flex-grow bg-white px-[46px] py-7">
               <div v-for="(message, index) in messages" :key="index">
                 <div v-if="message.bot" class="flex items-start">
                   <img
-                    class="h-[45px] w-[45px]"
-                    src="@/assets/images/bot.png"
+                    class="h-[45px] w-[45px] rounded"
+                    src="@/assets/images/profile_bot.png"
                     alt="chat"
                   />
                   <div class="flex items-start ml-[14px]">
                     <p
                       v-html="marked(message.bot)"
-                      class="font-medium text-[20px] font-serif text-[#1F263E] w-full"
+                      class="font-medium text-[20px] text-[#1F263E] w-full"
                     ></p>
                   </div>
                 </div>
@@ -627,18 +627,27 @@ const router = useRoute();
 const ranking = ref({})
 onMounted(async() => {
   initTE({ Tooltip, Dropdown,Modal });
+
   
   
   if (router.query.showUploadFile) {
     showUploadFile.value = router.query.showUploadFile;
-    router.query.showUploadFile == 'true' ? textarea.value = "is this product packaging compliant" : "What are the rules and regulations to sell this online?";
   }
-  if (router.query) {
-    console.log("showSideBar", router.query.showSideBar);
+
+  if (router.query.type){
+    if (router.query.type == 'label'){
+      textarea.value = "Is this product package label legally compliant?"
+    } else if (router.query.type == 'product') {
+      textarea.value = "What legal compliances apply to this product?"
+    } else if (router.query.type == 'laws') {
+      textarea.value = "What are all the rules and regulations I need to follow to be completely compliant while selling online?"
+  }
+  }else { 
+    textarea.value = ''
+  }
+
+  if (router.query.showSideBar) {
     showSideBar.value = router.query.showSideBar == 'false' ? false : true;
-    if (!showSideBar.value) {
-      textarea.value = "";
-    }
   }
   ranking.value = await server.fetchRanking()
   initialConnection();

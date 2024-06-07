@@ -91,14 +91,14 @@
               data-te-ripple-init
               data-te-ripple-color="light"
             >
-              <p class="font-extrabold text-xl text-[#9A9B9F] text-center">
+              <p class="font-extrabold text-xl text-blue-950 text-center">
                 <u>Check Ranking</u>
               </p>
             </button>
 
-            <p class="mt-1 font-normal text-xs text-[#9A9B9F] text-center">
+            <!-- <p class="mt-1 font-normal text-xs text-[#9A9B9F] text-center">
               © Copyright 2024 CYDRA TECH x MASTERGEAR All Rights Reserved
-            </p>
+            </p> -->
           </div>
         </div>
       </div>
@@ -163,7 +163,7 @@
                       scope="row"
                       class="py-4 font-medium text-gray-900 text-center"
                     >
-                      {{ index }}
+                      {{ index + 1}}
                     </th>
                     <td class="px-6 py-4 flex items-center space-x-2">
                       <div class="flex items-center">

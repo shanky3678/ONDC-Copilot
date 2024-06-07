@@ -317,18 +317,18 @@
                 </tr>
               </tbody>
             </table>
-          </div>
         </div>
-      </div>
-      <div
-        class="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:w-1/2 xl:w-2/5 h-screen px-6 lg:px-16 xl:px-12 flex items-center justify-center"
+    </div>
+    <button>
+      <a
+        class="px-4 py-2 mr-1 mb-1 bg-[#084acf] outline-none rounded shadow text-white text-xs font-bold uppercase focus:outline-none hover:shadow-md active:bg-gray-600"
+        :href="documentDetails.pdf_link"
+        target="_blank"
+        rel="noopener noreferrer"
       >
-        <div
-          class="w-full h-100 container mx-auto my-12 mt-[200px] ml-10 p-4 bg-gray-100 border rounded"
-        >
-          <h1 class="text-xl font-bold text-[#094B72]">OG PDF Viwer</h1>
-          <embed :src="documentDetails.pdf_link" width="100%" height="80%" />
-        </div>
+        View PDF</a
+      >
+    </button>
       </div>
     </section>
     <section
@@ -337,7 +337,7 @@
     >
       <div itemscope itemtype="https://schema.org/FAQPage">
         <div class="py-10 px-4 container mx-auto">
-          <h1 class="font-bold text-center text-xl mb-4">FAQ Sections</h1>
+          <h1 class="font-bold text-center text-xl mb-4">Extracted document sections</h1>
           <ul class="grid gap-6" data-list="faq">
             <li
               v-for="(value, key) in documentDetails.sections"

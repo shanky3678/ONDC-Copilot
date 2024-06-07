@@ -16,7 +16,7 @@
                             <img class="h-[50px] w-[50px] rounded-full" :src="profile" alt="">
                         </button>
                         <ul v-show="showProfileMenu"
-                            class="list w-[400px] h-[300px] absolute top-[60px] right-12 rounded-[18px] shadow-xl border border-[#BABABA] p-12 bg-white z-[99]">
+                            class="list w-[400px] h-[360px] absolute top-[60px] right-12 rounded-[18px] shadow-xl border border-[#BABABA] p-12 bg-white z-[99]">
                             <RouterLink to="/home">
                                 <li class="font-bold text-lg text-[#5D81F3] ">Home</li>
                             </RouterLink>
@@ -28,7 +28,9 @@
                                 <li class="mt-9 font-bold text-lg text-[#979797]">Ranking</li>
                             </button>
                             <br>
-
+                            <RouterLink to="/pricing">
+                                <li class="mt-9 font-bold text-lg text-[#979797]  ">API Pricing</li>
+                            </RouterLink>
                             <button @click="logoutFun()" >
                             <li class="mt-9 font-bold text-lg text-[#979797]">Logout</li>
                             </button>

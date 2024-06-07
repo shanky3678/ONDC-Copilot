@@ -18,7 +18,7 @@
                                 style="font-weight: 400; font-size: 14px; color: #193E6C; ">
 
                                 Upload or Verify Laws to our database<p @click="navTo('Defender')"
-                                    class="w-[86px] py-[6px] rounded-[26px] bg-[#094B72] ml-2 text-center"
+                                    class="w-[86px] py-[6px] rounded-[26px] bg-[#094B72] ml-2 text-center cursor-pointer"
                                     style="font-weight: 400; font-size: 12px; color: white;">Click
                                     Here</p>
                             </div>
@@ -26,30 +26,36 @@
                             class="mt-[40px] font-bold text-[#094B72]  md:text-[75px] xl:leading-[80px] text-[43px] leading-[70px] heading font-playfair ">
                             Hello I am your compliance assistant
                         </h2>
-                        <div class="flex items-center mt-10 w-full">
-                            <RouterLink to="/home">
-                            <button
-                                class="border border-[#094B72] mr-[15px] bg-[#E7F6FF] py-7 px-5 rounded-lg w-[300px] text-[18px] font-extrabold text-[#094B72]">Check
-                                laws for my product</button>
+                        <div class="flex items-center mt-10 w-full ">
+                            <RouterLink to="/home?type=laws">
+                                
+                                <button
+                                class=" justify-center flex border border-[#094B72] mr-[15px] bg-[#E7F6FF] py-7 px-2 rounded-lg w-[330px] text-[18px] font-extrabold text-[#094B72]">
+                                <img src="@/assets/images/codicon_law.png" class="mr-2 " alt="">
+                                Check laws for my product</button>
                             </RouterLink>
                             <RouterLink to="/home?showSideBar=false" >
+                                
                                 <button 
-                                class="border border-[#094B72] mr-[15px] bg-[#E7F6FF] py-7 px-5 rounded-lg w-[300px] text-[18px] font-extrabold text-[#094B72]">Ask
-                                legal doubts</button>
+                                class="border flex  justify-center border-[#094B72] mr-[15px] bg-[#E7F6FF] py-7 px-4 rounded-lg w-[330px] text-[18px] font-extrabold text-[#094B72]">
+                                <img src="@/assets/images/Vector.png" class="mr-2" alt="">
+                                Ask legal compliance doubts</button>
                             </RouterLink>
                         </div>
                         <div class="flex items-center mt-5 w-full">
-                            <RouterLink to="/home?showUploadFile=true&type=package"  >
-
+                            <RouterLink to="/home?showSideBar=false&showUploadFile=true&type=product"  >
+                                
                                 <button 
-                                class="border border-[#094B72] mr-[15px] text-[#FFFFFF] py-7 px-5 rounded-lg w-[300px] text-[18px] font-extrabold bg-[#094B72]">Ask
-                                with product image</button>
+                                class="flex border justify-center border-[#094B72] mr-[15px] text-[#FFFFFF] py-7 px-5 rounded-lg w-[330px] text-[18px] font-extrabold bg-[#094B72]">
+                                <img src="@/assets/images/Vector-2.png" class="mr-2" alt="">
+                                 Ask with product image</button>
                             </RouterLink>
-                            <RouterLink to="/defender">
-
+                            <RouterLink to="/home?showSideBar=false&showUploadFile=true&type=label">
                                 <button
-                                class="border border-[#094B72] mr-[15px] text-[#FFFFFF] py-7 px-5 rounded-lg w-[300px] text-[18px] font-extrabold bg-[#094B72]">Upload/Verify
-                                laws</button>
+                                
+                                class="border  justify-center flex border-[#094B72] mr-[15px] text-[#FFFFFF] py-7 px-5 rounded-lg w-[330px] text-[18px] font-extrabold bg-[#094B72]">
+                                <img src="@/assets/images/Vector-2.png" class="mr-2" alt="">      
+                                Check product label</button>
                             </RouterLink>
                         </div>
                     </div>
@@ -124,7 +130,7 @@
                       scope="row"
                       class="py-4 font-medium text-gray-900 text-center"
                     >
-                      {{ index }}
+                      {{ index + 1 }}
                     </th>
                     <td class="px-6 py-4 flex items-center space-x-2">
                       <div class="flex items-center">

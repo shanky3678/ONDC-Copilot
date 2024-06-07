@@ -273,7 +273,7 @@
                       scope="row"
                       class="py-4 font-medium text-gray-900 text-center"
                     >
-                      {{ index }}
+                      {{ index + 1}}
                     </th>
                     <td class="px-6 py-4 flex items-center space-x-2">
                       <div class="flex items-center">
@@ -357,7 +357,8 @@ const search = async() =>{
     !isEmptyOrNull(search_act_number.value) ? [search_act_number.value.toString()] : [],
      "",
       search_dept.value )
-    total_page_count.value = await server.getPageCount(10,[search_state.value.toString()],!isEmptyOrNull(search_act_number.value) ? [search_act_number.value.toString()] : [],"", search_dept.value);
+    total_page_count.value = await server.getPageCount(10,
+    !isEmptyOrNull(search_state.value) ?[search_state.value.toString()]: [],!isEmptyOrNull(search_act_number.value) ? [search_act_number.value.toString()] : [],"", search_dept.value);
   }
 }
 

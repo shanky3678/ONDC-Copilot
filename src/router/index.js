@@ -8,6 +8,7 @@ import MainView from "@/views/MainView.vue";
 import AuthVerificationView from "@/views/AuthVerificationView.vue";
 import LawDataTable from "@/views/LawDataTable.vue";
 import LawDataTableView from "@/views/LawDataTableView";
+import PricingView from '@/views/PricingView.vue'
 import { useServerStore } from "@/stores/server";
 import { isEmptyOrNull } from "@/shared/utils";
 
@@ -33,6 +34,13 @@ const router = createRouter({
       meta: { requiresAuth: true },
 
     },
+    {
+      path:"/pricing",
+      name:"Pricing",
+      component: PricingView,
+      meta: { requiresAuth: true },
+    },
+
     {
       path: "/law-data-view",
       name: "LawDataTableView",

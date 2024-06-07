@@ -326,7 +326,7 @@
                       scope="row"
                       class="py-4 font-medium text-gray-900 text-center"
                     >
-                      {{ index }}
+                      {{ index + 1}}
                     </th>
                     <td class="px-6 py-4 flex items-center space-x-2">
                       <div class="flex items-center">
