@@ -1,9 +1,9 @@
-# 📜 AI Legal Compliance Bot 🚀
+# 📜 AI Compliance Assistant 🚀
 
 ## 📝 Brief About the Idea
 Legal compliance is a complex and time-consuming problem. This gets worse as the company/startup scales and hampers the growth of the company.
 
-Hence, we present our **AI Legal Compliance Bot**, a complete AI-based legal compliance solution that provides accurate compliance in minutes instead of days for platform companies.
+Hence, we present our **AI Compliance Assistant**, a complete AI-based legal compliance solution that provides accurate compliance in minutes instead of days for platform companies.
 
 ## 🌟 Feature - Legal Eye
 ### 📸 Legal Eye
@@ -15,7 +15,7 @@ An image-based compliance calculating AI solution. This may be an image of a PDF
 ## 🖥️ User-Friendly Interface
 The platform participants can be laymen trying to sell on the platform or buy on the platform. They do not understand legal complexities, leading to longer onboarding, longer sales processes, and frustrating experiences.
 
-That’s why we built the **Legal Compliance Assistant**. It will answer any legal query they have 24x7 in a simplified manner.
+That’s why we built the **AI Compliance Assistant**. It will answer any legal query they have 24x7 in a simplified manner.
 
 ## 🌍 Ever-Changing and Complex Legal Landscape
 The legal landscape is constantly changing, and traditionally the legal team needs to train all the relevant employees every time a policy is updated or changed.
