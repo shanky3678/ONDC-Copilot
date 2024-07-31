@@ -1,40 +1,44 @@
-# 📜 AI Compliance Assistant (ACS) 📜
+# 📜 AI Compliance Assistant (ACS) 🚀
 
-Welcome to the **AI Compliance Assistant (ACS)**! This project is your go-to solution for all things related to Indian laws and acts. Whether you're a lawyer, law student, business owner, or an individual seeking legal information, ACS has got you covered.
+## 📝 Brief About the Idea
+Legal compliance is a complex and time-consuming problem. This gets worse as the company/startup scales and hampers the growth of the company.
 
-## 🚀 Introduction
+Hence, we present our **AI Legal Compliance Bot**, a complete AI-based legal compliance solution that provides accurate compliance in minutes instead of days for platform companies.
 
-The **AI Compliance Assistant (ACS)** is an intelligent assistant loaded with comprehensive data on Indian laws and acts. This application provides:
+## 🌟 Feature - Legal Eye
+### 📸 Legal Eye
+An image-based compliance calculating AI solution. This may be an image of a PDF or product label information, etc., and our Legal Eye gives a checklist of the compliant and non-compliant parts about it.
+- With this, every product on the platform can be audited for compliance in minutes, 24x7, in an automated fashion.
+- This also reduces the sale of shady products on the platform.
+- New policy updates can be done with one click of a button, and the AI will be updated across the organization.
 
-- **Legal Information and Clarifications**: Instantly access accurate legal information.
-- **Compliance Auditing**: Ensure your business products meet legal requirements.
-- **Inspection Guidance**: Navigate through the steps to pass compliance inspections.
+## 🖥️ User-Friendly Interface
+The platform participants can be laymen trying to sell on the platform or buy on the platform. They do not understand legal complexities, leading to longer onboarding, longer sales processes, and frustrating experiences.
 
-## 🏢 Who Can Benefit?
+That’s why we built the **Legal Compliance Assistant**. It will answer any legal query they have 24x7 in a simplified manner.
 
-- **Lawyers**: Quickly reference legal information.
-- **Law Students**: A handy tool for learning and research.
-- **Companies**: Simplify compliance processes and inspections.
-- **Individuals**: Easily find and understand legal requirements.
+## 🌍 Ever-Changing and Complex Legal Landscape
+The legal landscape is constantly changing, and traditionally the legal team needs to train all the relevant employees every time a policy is updated or changed.
 
-## 🌟 Key Features
+Since LLM AI isn’t auto-updating, we built an **AI Legal Database** feature to tackle this part of the problem.
 
-- **Document Upload**: Upload documents or images of your product.
-- **Detailed Guidance**: Step-by-step instructions to ensure compliance.
-- **Label Verification**: Alerts if your product labels do not meet legal standards.
+### 📚 AI Legal Database
+It has 4 components:
+1. **Powerful LLM AI**: To make a checklist and calculate the compliance for the data given.
+2. **Advanced RAG System**: To overcome the limitations of Generative AI.
+3. **Web Scrapers**: To scrape the data from official websites to update the database.
+4. **Policy Update Feature**: Allows the company to upload their own policies to this database.
 
-## 🔍 How It Works
+## 🔍 Our Unique Document RAG System for Compliance
+Our team has created an expert **Retrieval Augmented Generation** system to work with unlimited documents while overcoming the limitations of LLM AI like inconsistency, hallucinations, and inaccuracy.
 
-1. **Upload**: Start by uploading the document or image of your product.
-2. **Analyze**: ACS analyzes the content against Indian laws and acts.
-3. **Guide**: Receive detailed guidance on compliance steps.
-4. **Verify**: Check if your product labels adhere to legal requirements.
+## 📈 Prototype Performance Report
+This is still a **PROTOTYPE** so it is bound to improve with time and money. All the results here are from our testing.
 
-## 📚 Why Use ACS?
+- **Compliance Checklist Accuracy**: 90% - tested with 100 attempts to see if it missed out on any compliance checklist to look for in a given image. This is the easiest benchmark to improve upon.
+- **Compliance Completeness**: ~86% on average when asked to give compliance requirements for a product sold in a particular state.
+- **Failure to Give an Answer**: 2% of the times, when tested for 100 times.
 
-- **Accuracy**: Get precise legal information and compliance checks.
-- **Efficiency**: Save time and effort in understanding and applying legal requirements.
-- **Convenience**: Accessible anytime, anywhere for all your legal queries.
 
 ## 🛠️ Getting Started
 
@@ -55,9 +59,13 @@ To start using the AI Compliance Assistant (ACS):
    npm run dev
    ```
 
+## Here is the link to the back-end repository
+
+(Link to the Back-end repo)['https://github.com/JeevansSP/hackathon-poc']
+
 ## 📝 Contributions
 
-We welcome contributions from everyone! Feel free to open issues, submit pull requests, or suggest new features.
+Feel free to contribute, open issues, and create pull requests. Let's make legal compliance easy and efficient together! 🚀
 
 ## 📞 Contact
-For any questions or support, please reach out to us at info@cydratech.com
+For any questions or support, please reach out to us at dev@cydratech.com
