@@ -1,33 +1,63 @@
-# ONDC-Copilot
+# 📜 AI Compliance Assistant (ACS) 📜
 
-ONDC-Copilot is a user-friendly interface that communicates with a backend API to provide seamless interaction with Co-pilot. It allows users to upload state rules, which are not available in the database, for document verification and processing. Uploaded documents undergo OCR for labeling processing and are stored in a RAG (Red, Amber, Green) system for enhanced performance. Users who upload documents and those who verify them earn points as rewards for their contributions to the platform.
+Welcome to the **AI Compliance Assistant (ACS)**! This project is your go-to solution for all things related to Indian laws and acts. Whether you're a lawyer, law student, business owner, or an individual seeking legal information, ACS has got you covered.
 
-## Features
+## 🚀 Introduction
 
-- **Interface with Backend API:** Seamless communication with the backend API for enhanced functionality.
-- **Co-pilot Connectivity:** Allows users to interact with Co-pilot through the user interface.
-- **State Rules Upload:** Users can upload state rules not available in the database for document processing.
-- **Document Verification:** Uploaded documents are verified by users before undergoing OCR for labeling processing.
-- **Reward System:** Both document uploaders and verifiers earn points as rewards for their contributions.
+The **AI Compliance Assistant (ACS)** is an intelligent assistant loaded with comprehensive data on Indian laws and acts. This application provides:
 
+- **Legal Information and Clarifications**: Instantly access accurate legal information.
+- **Compliance Auditing**: Ensure your business products meet legal requirements.
+- **Inspection Guidance**: Navigate through the steps to pass compliance inspections.
 
-## Project Setup
+## 🏢 Who Can Benefit?
 
-```sh
-npm install
-```
+- **Lawyers**: Quickly reference legal information.
+- **Law Students**: A handy tool for learning and research.
+- **Companies**: Simplify compliance processes and inspections.
+- **Individuals**: Easily find and understand legal requirements.
 
-### Compile and Hot-Reload for Development
+## 🌟 Key Features
 
-```sh
-npm run dev
-```
+- **Document Upload**: Upload documents or images of your product.
+- **Detailed Guidance**: Step-by-step instructions to ensure compliance.
+- **Label Verification**: Alerts if your product labels do not meet legal standards.
 
-### Compile and Minify for Production
+## 🔍 How It Works
 
-```sh
-npm run build
-```
+1. **Upload**: Start by uploading the document or image of your product.
+2. **Analyze**: ACS analyzes the content against Indian laws and acts.
+3. **Guide**: Receive detailed guidance on compliance steps.
+4. **Verify**: Check if your product labels adhere to legal requirements.
 
+## 📚 Why Use ACS?
 
+- **Accuracy**: Get precise legal information and compliance checks.
+- **Efficiency**: Save time and effort in understanding and applying legal requirements.
+- **Convenience**: Accessible anytime, anywhere for all your legal queries.
 
+## 🛠️ Getting Started
+
+To start using the AI Compliance Assistant (ACS):
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/yourusername/ai-compliance-assistant.git
+   ```
+
+2. **Install Dependencies**:
+   ```bash
+   cd ai-compliance-assistant
+   npm install
+   ```
+3. **Run The Application**:
+  ```base
+  npm run dev
+  ```
+
+## 📝 Contributions
+
+We welcome contributions from everyone! Feel free to open issues, submit pull requests, or suggest new features.
+
+## 📞 Contact
+For any questions or support, please reach out to us at info@cydratech.com
