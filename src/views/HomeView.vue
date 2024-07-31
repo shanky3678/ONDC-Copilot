@@ -749,6 +749,7 @@ const openUploadFile = () => {
   showUploadFile.value = !showUploadFile.value;
 };
 
+//new
 const closeFileUpload = () => {
   showUploadFile.value = false;
   removeDocument();
