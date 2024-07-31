@@ -1,27 +1,7 @@
 <template>
   <body>
     <div>
-      <div
-        class="pl-8 pr-[60px] py-2 flex justify-between items-center shadow-lg sticky"
-      >
-        <RouterLink to="/main">
-          <div class="flex items-center">
-            <img
-              class="h-[50px] w-[50px]"
-              src="@/assets/images/bot.png"
-              alt="logo"
-            />
-
-            <p class="ml-3 font-normal text-[#1F263E] text-[19px]">
-              ONDC <br />
-              DASHBAORD
-            </p>
-          </div>
-        </RouterLink>
-        <div class="flex items-center">
-          <Navbar />
-        </div>
-      </div>
+      <Navbar class="z-[99]" hide-me="" />
     </div>
 
     <section
@@ -317,18 +297,18 @@
                 </tr>
               </tbody>
             </table>
+          </div>
         </div>
-    </div>
-    <button>
-      <a
-        class="px-4 py-2 mr-1 mb-1 bg-[#084acf] outline-none rounded shadow text-white text-xs font-bold uppercase focus:outline-none hover:shadow-md active:bg-gray-600"
-        :href="documentDetails.pdf_link"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        View PDF</a
-      >
-    </button>
+        <button>
+          <a
+            class="px-4 py-2 mr-1 mb-1 bg-[#084acf] outline-none rounded shadow text-white text-xs font-bold uppercase focus:outline-none hover:shadow-md active:bg-gray-600"
+            :href="documentDetails.pdf_link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View PDF</a
+          >
+        </button>
       </div>
     </section>
     <section
@@ -337,7 +317,9 @@
     >
       <div itemscope itemtype="https://schema.org/FAQPage">
         <div class="py-10 px-4 container mx-auto">
-          <h1 class="font-bold text-center text-xl mb-4">Extracted document sections</h1>
+          <h1 class="font-bold text-center text-xl mb-4">
+            Extracted document sections
+          </h1>
           <ul class="grid gap-6" data-list="faq">
             <li
               v-for="(value, key) in documentDetails.sections"

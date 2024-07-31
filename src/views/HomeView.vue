@@ -13,9 +13,7 @@
           class="w-[420px] bg-white p-8 rounded-2xl flex flex-col gap-12 border"
         >
           <button
-            @click="
-              closeFileUpload
-            "
+            @click="closeFileUpload"
             type="button"
             class="bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
           >
@@ -85,9 +83,9 @@
 
           <section class="bg-white">
             <div class=" ">
-              <div v-if="imageUrl.length > 0" class="flex">
+              <div v-if="imageUrls.length > 0" class="flex">
                 <div
-                  v-for="(image, index) in imageUrl"
+                  v-for="(image, index) in imageUrls"
                   class="mb-4 h-[50px] w-[50px] flex"
                 >
                   <div class="ml-1 flex w-[50px]">
@@ -307,9 +305,13 @@
                         placeholder="Other Specific Details Related to Products "></textarea> -->
         </div>
         <div class="flex justify-center w-full mx-auto">
-          <button @click="sendMessage()" type="button" class="bg-[#5D81F3] w-full rounded px-[65px] py-2.5">
-                        <h1 class="text-white text-xs font-normal">SUBMIT</h1>
-                    </button>
+          <button
+            @click="sendMessage()"
+            type="button"
+            class="bg-[#5D81F3] w-full rounded px-[65px] py-2.5"
+          >
+            <h1 class="text-white text-xs font-normal">SUBMIT</h1>
+          </button>
         </div>
         <div class="mt-8">
           <!-- <div class="flex items-center">
@@ -319,30 +321,9 @@
         </div>
       </div>
     </div>
-    
+
     <div class="min-w-[80%] w-[80%]" :class="showSideBarClass">
-      <div class="pl-8 pr-[60px] py-2 flex justify-between items-center shadow-lg sticky">
-        <div class="flex items-center w-full">
-            <div v-if="!showSideBar" >
-          <RouterLink to="/main">
-               <div class="flex">
-                <img class="h-[50px] w-[50px]" src="@/assets/images/bot.png" alt="logo">
-                <p class="ml-3 font-normal text-[#1F263E] text-[19px] mr-2">ONDC <br> DASHBOARD </p>
-               </div>
-              </RouterLink>
-            </div>
-            <div>
-              <RouterLink to="/law-data">
-                <button 
-                class="px-4 py-2 mr-1 mb-1 bg-[#084acf]  outline-none rounded shadow text-white text-xs font-bold uppercase focus:outline-none hover:shadow-md active:bg-gray-600">
-                All Laws
-              </button>
-            </RouterLink>
-            </div>
-        </div>
-           
-            <Navbar />
-        </div>
+      <Navbar :hide-me="!showSideBar" :show-all-laws="true" />
       <div class="bg-[#d1cccc2e] pl-7 pr-[35px] pb-7 pt-[40px]">
         <div
           ref="chatContainer"
@@ -372,7 +353,7 @@
                   <img class="h-[45px] w-[45px] rounded-full" :src="profile" />
                   <div class="flex items-start mt-[15px] ml-[18px]">
                     <div class="flex">
-                      <div v-if="imageUrl" class="flex">
+                      <div v-if="imageUrls" class="flex">
                         <div
                           v-for="(image, index) in message.user.images"
                           class="mt-4 h-[50px] w-[50px] flex"
@@ -409,43 +390,35 @@
             </div>
           </div>
         </div>
-        <!-- <div v-if="imageUrl" class="flex">
-          <div
-            v-for="(image, index) in imageUrl"
-            class="mt-4 h-[50px] w-[50px] flex"
-          >
-            <div class="ml-1 flex w-[50px]">
-              <img
-                :src="image"
-                alt="Uploaded Image"
-                class="max-w-full h-auto border rounded"
-              />
-              <button
-                @click="closeFileUpload(index)"
-                type="button"
-                class="ms-auto bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+        <div>
+          <div>
+            <button
+              v-if="fileName"
+              @click="removeDocument"
+              type="button"
+              class="bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+            >
+              <span class="sr-only">Close</span>
+              <svg
+                class="w-3 h-3"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 14"
               >
-                <span class="sr-only">Close</span>
-                <svg
-                  class="w-3 h-3"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 14"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                  />
-                </svg>
-              </button>
-            </div>
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                />
+              </svg>
+            </button>
+            <p v-if="fileName">Selected file: {{ fileName }}</p>
           </div>
-        </div> -->
-        <div class="mt-[18px] relative">
+        </div>
+        <div class="mt-[18px] relative justify-center">
           <input
             @keydown.enter="sendMessage"
             v-model="textarea"
@@ -453,24 +426,53 @@
             type="text"
             class="w-full border border-[#D1CCCC] text-[20px] outline-0 py-5 pl-5 pr-14 rounded-[6px]"
           />
+          <label
+            @click="triggerFileInput"
+            class="flex items-center absolute right-[92px] top-[21px] cursor-pointer"
+          >
+            <div>
+              <input
+                type="file"
+                @change="handleDocumentUpload"
+                accept=".pdf"
+                ref="fileDocmentInput"
+                style="display: none"
+              />
+              <div class="w-[20px] h-[20px]">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  id="Document"
+                  width="20"
+                  height="20"
+                >
+                  <path
+                    d="M19,2H7C5.9,2,5,2.9,5,4v16c0,1.1,0.9,2,2,2h10c1.1,0,2-0.9,2-2V6L19,2z M17,18H7v-2h10V18z M17,14H7v-2h10V14z M17,10H7V8h10V10z M16,4.5V8H13V4.5H16z"
+                    fill="#7c7c7c"
+                    class="color000000 svgShape w-2 h-2 mb-4"
+                  />
+                </svg>
+              </div>
+            </div>
+          </label>
 
           <label
             @click="openUploadFile"
             class="flex items-center absolute right-16 top-[21px] cursor-pointer"
           >
-          <div class="w-[20px] h-[20px]">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    id="Camera"
-                  >
-                    <path
-                      d="M10 8a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm8-3h-2.4a.888.888 0 0 1-.789-.57l-.621-1.861A.89.89 0 0 0 13.4 2H6.6c-.33 0-.686.256-.789.568L5.189 4.43A.889.889 0 0 1 4.4 5H2C.9 5 0 5.9 0 7v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-8 11a5 5 0 0 1-5-5 5 5 0 1 1 10 0 5 5 0 0 1-5 5zm7.5-7.8a.7.7 0 1 1 0-1.4.7.7 0 0 1 0 1.4z"
-                      fill="#7c7c7c"
-                      class="color000000 svgShape w-2 h-2 mb-4"
-                    ></path>
-                  </svg>
-                </div>
+            <div class="w-[20px] h-[20px]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                id="Camera"
+              >
+                <path
+                  d="M10 8a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm8-3h-2.4a.888.888 0 0 1-.789-.57l-.621-1.861A.89.89 0 0 0 13.4 2H6.6c-.33 0-.686.256-.789.568L5.189 4.43A.889.889 0 0 1 4.4 5H2C.9 5 0 5.9 0 7v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-8 11a5 5 0 0 1-5-5 5 5 0 1 1 10 0 5 5 0 0 1-5 5zm7.5-7.8a.7.7 0 1 1 0-1.4.7.7 0 0 1 0 1.4z"
+                  fill="#7c7c7c"
+                  class="color000000 svgShape w-2 h-2 mb-4"
+                ></path>
+              </svg>
+            </div>
           </label>
 
           <img
@@ -507,30 +509,29 @@
         <!-- //ranking code -->
         <section>
           <div class="w-[420px] bg-white p-8 rounded-2xl flex flex-col gap-5">
-              <button
-             
-                data-te-modal-dismiss
-                aria-label="Close"
-                type="button"
-                class="ms-auto bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+            <button
+              data-te-modal-dismiss
+              aria-label="Close"
+              type="button"
+              class="ms-auto bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+            >
+              <span class="sr-only">Close</span>
+              <svg
+                class="w-3 h-3"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 14"
               >
-                <span class="sr-only">Close</span>
-                <svg
-                  class="w-3 h-3"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 14"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                  />
-                </svg>
-              </button>
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                />
+              </svg>
+            </button>
             <h1 class="text-xl text-gray-500">Leader Board Ranking</h1>
             <div class="relative overflow-x-auto">
               <table
@@ -544,7 +545,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(data, index) of ranking" :key="index" class="bg-white border-b">
+                  <tr
+                    v-for="(data, index) of ranking"
+                    :key="index"
+                    class="bg-white border-b"
+                  >
                     <th
                       scope="row"
                       class="py-4 font-medium text-gray-900 text-center"
@@ -554,18 +559,21 @@
                     <td class="px-6 py-4 flex items-center space-x-2">
                       <div class="flex items-center">
                         <img
-                          :src="data.user_image != null ? data.user_image : defaultImage"
+                          :src="
+                            data.user_image != null
+                              ? data.user_image
+                              : defaultImage
+                          "
                           alt="User Avatar"
                           class="w-8 h-8 rounded-full mr-4 object-cover"
                         />
-                        <span class="text-gray-800 font-semibold"
-                          > {{ data.user_name }}</span
+                        <span class="text-gray-800 font-semibold">
+                          {{ data.user_name }}</span
                         >
                       </div>
                     </td>
-                    <td class="px-6 py-4">{{data.user_points}} pt</td>
+                    <td class="px-6 py-4">{{ data.user_points }} pt</td>
                   </tr>
-              
                 </tbody>
               </table>
             </div>
@@ -595,61 +603,57 @@ import ToastMessage from "@/components/ToastMessage.vue";
 const state = ref("");
 
 const inputFile = ref(null);
+const fileDocmentInput = ref(null);
+const fileName = ref(null);
 const selectedCategory = ref("Choose Your Category");
 const messageLoading = ref(false);
 const isBusy = ref(false);
 const productName = ref("");
-const imageUrl = ref([]);
+const imageUrls = ref([]);
+const DocumentUrls = ref([]);
 const imageLimitCrossed = ref(false);
 const showUploadFile = ref(false);
 const showSideBar = ref(true);
-
-
-
+const server = useServerStore();
+const router = useRoute();
+const ranking = ref({});
 let listBase64 = [];
+let listDocBase64 = [];
 const messages = ref([
   {
     bot: "Connecting...",
   },
 ]);
 const textarea = ref("What are the rules and regulations to sell this online?");
-
 let socket;
-
 const showSideBarClass = computed(() => {
   return showSideBar.value ? "w-[80%]" : "w-full";
 });
 
+onMounted(async () => {
+  initTE({ Tooltip, Dropdown, Modal });
 
-
-const server = useServerStore();
-const router = useRoute();
-const ranking = ref({})
-onMounted(async() => {
-  initTE({ Tooltip, Dropdown,Modal });
-
-  
-  
   if (router.query.showUploadFile) {
     showUploadFile.value = router.query.showUploadFile;
   }
 
-  if (router.query.type){
-    if (router.query.type == 'label'){
-      textarea.value = "Is this product package label legally compliant?"
-    } else if (router.query.type == 'product') {
-      textarea.value = "What legal compliances apply to this product?"
-    } else if (router.query.type == 'laws') {
-      textarea.value = "What are all the rules and regulations I need to follow to be completely compliant while selling online?"
-  }
-  }else { 
-    textarea.value = ''
+  if (router.query.type) {
+    if (router.query.type == "label") {
+      textarea.value = "Is this product package label legally compliant?";
+    } else if (router.query.type == "product") {
+      textarea.value = "What legal compliances apply to this product?";
+    } else if (router.query.type == "laws") {
+      textarea.value =
+        "What are all the rules and regulations I need to follow to be completely compliant while selling online?";
+    }
+  } else {
+    textarea.value = "";
   }
 
   if (router.query.showSideBar) {
-    showSideBar.value = router.query.showSideBar == 'false' ? false : true;
+    showSideBar.value = router.query.showSideBar == "false" ? false : true;
   }
-  ranking.value = await server.fetchRanking()
+  ranking.value = await server.fetchRanking();
   initialConnection();
 });
 
@@ -663,8 +667,30 @@ const openUploadFile = () => {
 
 const closeFileUpload = () => {
   showUploadFile.value = false;
- imageUrl.value = []
- listBase64 = []
+  imageUrls.value = [];
+  listBase64 = [];
+};
+
+const handleDocumentUpload = () => {
+  const file = fileDocmentInput.value.files[0];
+  if (file) {
+    console.log("Selected file:", file.name);
+    fileName.value = file.name;
+    try {
+      imageUrls.value.push(URL.createObjectURL(file));
+      const reader = new FileReader();
+      let base64String = "";
+
+      reader.onloadend = (e) => {
+        base64String = e.target.result.split(",")[1];
+        listDocBase64.push(base64String);
+      };
+
+      reader.readAsDataURL(file);
+    } catch (e) {
+      console.log("Error base64: ", e);
+    }
+  }
 };
 
 const handleFileUpload = () => {
@@ -672,22 +698,26 @@ const handleFileUpload = () => {
     inputFile.value.files &&
     inputFile.value.files.length > 0 &&
     inputFile.value.files.length <= 5 &&
-    imageUrl.value.length <= 5
+    imageUrls.value.length <= 5
   ) {
     for (let i = 0; i < inputFile.value.files.length; i++) {
-      imageUrl.value.push(URL.createObjectURL(inputFile.value.files[i]));
-      const file = inputFile.value.files[i];
-      const reader = new FileReader();
-      let base64String = "";
+      try {
+        imageUrls.value.push(URL.createObjectURL(inputFile.value.files[i]));
+        const file = inputFile.value.files[i];
+        const reader = new FileReader();
+        let base64String = "";
 
-      reader.onloadend = (e) => {
-        base64String = e.target.result.split(",")[1];
-        listBase64.push(base64String);
-      };
+        reader.onloadend = (e) => {
+          base64String = e.target.result.split(",")[1];
+          listBase64.push(base64String);
+        };
 
-      reader.readAsDataURL(file);
+        reader.readAsDataURL(file);
+      } catch (e) {
+        console.log("Error base64: ", e);
+      }
     }
-  } else if (inputFile.value.files.length > 7 && imageUrl.value.length > 7) {
+  } else if (inputFile.value.files.length > 7 && imageUrls.value.length > 7) {
     inputFile.value.files[5] = null;
     imageLimitCrossed.value = true;
     setTimeout(() => {
@@ -697,13 +727,27 @@ const handleFileUpload = () => {
 };
 
 const removeImage = (index) => {
-  if (imageUrl.value.length === 1) {
-    imageUrl.value = [];
+  if (imageUrls.value.length === 1) {
+    imageUrls.value = [];
     listBase64.value = [];
     return;
+  } else if (index.length > 1) {
+    imageUrls.value.splice(index, 1);
+    listBase64.value.splice(index, 1);
   }
-  imageUrl.value.splice(index, 1);
-  listBase64.value.splice(index, 1);
+};
+
+const removeDocument = (index) => {
+  fileDocmentInput.value.value = "";
+  fileName.value = "";
+  if (DocumentUrls.value.length === 1) {
+    DocumentUrls.value = [];
+    listDocBase64.value = [];
+    return;
+  } else if (index.length > 1) {
+    DocumentUrls.value.splice(index, 1);
+    listDocBase64.value.splice(index, 1);
+  }
 };
 
 let messageListener = (event) => {
@@ -771,7 +815,7 @@ const autoScrollDown = () => {
 const sendMessage = () => {
   if (socket && socket.readyState === WebSocket.OPEN && textarea.value != "") {
     messageLoading.value = true;
-
+    console.log("listDocBase64: ", listDocBase64);
     let values = JSON.stringify({
       question: textarea.value,
       state: state.value,
@@ -782,21 +826,27 @@ const sendMessage = () => {
         : "",
       "product name": productName.value,
       images: listBase64,
+      pdf: listDocBase64[0] || null,
     });
     messages.value.push({
       user: {
-        images: imageUrl.value,
+        images: imageUrls.value,
         message: textarea.value,
       },
     });
     socket.send(values);
-    textarea.value = "";
-    listBase64 = [];
-    imageUrl.value = [];
-    showUploadFile.value = false;
-    setTimeout(() => {
-      autoScrollDown();
-    }, 500);
+    resetDefault();
   }
+};
+
+const resetDefault = () => {
+  textarea.value = "";
+  listBase64 = [];
+  listDocBase64 = [];
+  imageUrls.value = [];
+  showUploadFile.value = false;
+  setTimeout(() => {
+    autoScrollDown();
+  }, 500);
 };
 </script>

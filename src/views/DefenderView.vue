@@ -25,21 +25,7 @@
       </div>
     </div>
     <div>
-      <div class="pl-8 pr-[60px] py-2 flex justify-between items-center">
-        <RouterLink to="/main">
-          <div class="flex items-center">
-            <img
-              class="h-[50px] w-[50px]"
-              src="@/assets/images/bot.png"
-              alt="logo"
-            />
-            <p class="ml-3 font-normal text-[#1F263E] text-[19px]">
-              ONDC DASHBOARD
-            </p>
-          </div>
-        </RouterLink>
-        <Navbar />
-      </div>
+      <Navbar class="z-[99]" hide-me="" />
       <div class="w-full bg-[#d1cccc2e] h-customh2 relative">
         <div class="w-full flex justify-end pr-10">
           <RouterLink to="/home"
@@ -48,32 +34,37 @@
         </div>
         <div class="w-[60%] mx-auto pt-[7%]">
           <h1
-            class="font-bold text-[103px] leading-[115px] text-[1F263E] text-center"
+            class="font-bold text-[78px] leading-[115px] text-[1F263E] text-center"
           >
-            Become <span class="login-condition-text">ONDC</span><br />Defender
+            Upload / Verify<br />
+            <span class="login-condition-text text-[103px]"
+              >Laws and Policies</span
+            >
           </h1>
-          <p
+          <!-- <p
             class="mt-4 font-medium text-[22px] leading-[26px] text-[#979797] text-center"
           >
             Earn ONDC points and climb the ranks to become our legal partner
-          </p>
+          </p> -->
           <div class="mt-[63px] w-full flex items-center">
             <button
               @click="navToDatabase()"
               type="button"
               class="py-[26px] w-1/2 text-white mr-8 bg-[#079ADC] rounded-[11px]"
             >
-              <h1 class="font-medium text-xl">
+              <!-- <h1 class="font-medium text-xl">
                 Upload the law / Update (+10 pts )
-              </h1>
+              </h1> -->
+              <h1 class="font-medium text-xl">Upload the law / Update</h1>
             </button>
             <button
               @click="navToVerification()"
               class="py-[26px] w-1/2 text-white bg-[#5D81F3] rounded-[11px]"
             >
-              <h1 class="font-medium text-xl">
+              <!-- <h1 class="font-medium text-xl">
                 Verify the submitted Laws ( +1 pt )
-              </h1>
+              </h1> -->
+              <h1 class="font-medium text-xl">Verify the submitted Laws</h1>
             </button>
           </div>
           <!-- <div class="mt-[63px]">
@@ -81,7 +72,7 @@
                     <p class="font-medium text-[22px] text-[#979797] text-center">contact@cydratech.com</p>
                 </div> -->
         </div>
-        <div class="w-full absolute bottom-10">
+        <!-- <div class="w-full absolute bottom-10">
           <div class="flex flex-col mx-auto items-center justify-center">
             <button
               @click="getRanking"
@@ -96,11 +87,9 @@
               </p>
             </button>
 
-            <!-- <p class="mt-1 font-normal text-xs text-[#9A9B9F] text-center">
-              © Copyright 2024 CYDRA TECH x MASTERGEAR All Rights Reserved
-            </p> -->
+           
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </body>
@@ -122,29 +111,29 @@
         <!-- //ranking code -->
         <section>
           <div class="w-[420px] bg-white p-8 rounded-2xl flex flex-col gap-5">
-              <button
-                data-te-modal-dismiss
-                aria-label="Close"
-                type="button"
-                class="ms-auto bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+            <button
+              data-te-modal-dismiss
+              aria-label="Close"
+              type="button"
+              class="ms-auto bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+            >
+              <span class="sr-only">Close</span>
+              <svg
+                class="w-3 h-3"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 14"
               >
-                <span class="sr-only">Close</span>
-                <svg
-                  class="w-3 h-3"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 14"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                  />
-                </svg>
-              </button>
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                />
+              </svg>
+            </button>
             <h1 class="text-xl text-gray-500">Leader Board Ranking</h1>
             <div class="relative overflow-x-auto">
               <table
@@ -158,28 +147,35 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(data, index) of ranking" :key="index" class="bg-white border-b">
+                  <tr
+                    v-for="(data, index) of ranking"
+                    :key="index"
+                    class="bg-white border-b"
+                  >
                     <th
                       scope="row"
                       class="py-4 font-medium text-gray-900 text-center"
                     >
-                      {{ index + 1}}
+                      {{ index + 1 }}
                     </th>
                     <td class="px-6 py-4 flex items-center space-x-2">
                       <div class="flex items-center">
                         <img
-                          :src="data.user_image != null ? data.user_image : defaultImage"
+                          :src="
+                            data.user_image != null
+                              ? data.user_image
+                              : defaultImage
+                          "
                           alt="User Avatar"
                           class="w-8 h-8 rounded-full mr-4 object-cover"
                         />
-                        <span class="text-gray-800 font-semibold"
-                          > {{ data.user_name }}</span
+                        <span class="text-gray-800 font-semibold">
+                          {{ data.user_name }}</span
                         >
                       </div>
                     </td>
-                    <td class="px-6 py-4">{{data.user_points}} pt</td>
+                    <td class="px-6 py-4">{{ data.user_points }} pt</td>
                   </tr>
-              
                 </tbody>
               </table>
             </div>
@@ -196,8 +192,7 @@ import { onMounted, ref } from "vue";
 import { Modal, Popconfirm, initTE } from "tw-elements";
 import { useServerStore } from "@/stores/server";
 import Navbar from "@/components/Navbar.vue";
-import defaultImage from '@/assets/images/userPro.png'
-
+import defaultImage from "@/assets/images/userPro.png";
 
 const server = useServerStore();
 const router = useRouter();
@@ -205,16 +200,15 @@ const showProfileMenu = ref(false);
 const isBusy = ref(false);
 const ranking = ref({});
 
-onMounted(async() => {
+onMounted(async () => {
   initTE({ Modal, Popconfirm });
-  ranking.value = await server.fetchRanking()
-  console.log(ranking.value)
+  ranking.value = await server.fetchRanking();
+  console.log(ranking.value);
 });
 
 function navToDatabase() {
   router.push({ name: "Database" });
 }
-
 
 function navToVerification() {
   router.push({ name: "Verification" });

@@ -1,27 +1,7 @@
 <template>
   <div>
-    <div
-      class="pl-8 pr-[60px] py-2 flex justify-between items-center shadow-lg sticky"
-    >
-    <RouterLink to="/main">
+    <Navbar class="z-[99]" hide-me="" />
 
-      
-      <div class="flex items-center">
-        <img
-        class="h-[50px] w-[50px]"
-        src="@/assets/images/bot.png"
-        alt="logo"
-        />
-        <p class="ml-3 font-normal text-[#1F263E] text-[19px]">
-          ONDC <br />
-          DASHBOARD
-        </p>
-      </div>
-    </RouterLink>
-      <div class="flex items-center">
-        <Navbar />
-      </div>
-    </div>
     <!-- component -->
     <body class="antialiased font-sans bg-gray-200">
       <div class="container mx-auto px-4 sm:px-8">
@@ -37,9 +17,14 @@
                   v-model="search_state"
                   class="appearance-none h-full rounded-l border block w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 >
-                <option value="" >State</option>
-                <option v-for="(state, index) of stateMapping" :value="state.state_code"  :key="index"> {{ state.state_name }} </option>
-                
+                  <option value="">State</option>
+                  <option
+                    v-for="(state, index) of stateMapping"
+                    :value="state.state_code"
+                    :key="index"
+                  >
+                    {{ state.state_name }}
+                  </option>
                 </select>
                 <div
                   class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
@@ -55,14 +40,12 @@
                   </svg>
                 </div>
               </div>
-
-              
             </div>
             <div class=" ">
               <input
-              v-model="search_dept"
+                v-model="search_dept"
                 placeholder="Department"
-                class="  h-full border border-gray-400 border-b block pl-2 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
+                class="h-full border border-gray-400 border-b block pl-2 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
               />
             </div>
             <div class="">
@@ -70,16 +53,16 @@
                 type="number"
                 v-model="search_act_number"
                 placeholder="ACT Number"
-                class=" h-full rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-2 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
+                class="h-full rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-2 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
               />
             </div>
             <div class="relative">
-              <button  
-              @click="search"
-                class="px-4 py-2 mr-1 mb-1 bg-[#084acf]  outline-none rounded shadow text-white text-xs font-bold uppercase focus:outline-none hover:shadow-md active:bg-gray-600">
+              <button
+                @click="search"
+                class="px-4 py-2 mr-1 mb-1 bg-[#084acf] outline-none rounded shadow text-white text-xs font-bold uppercase focus:outline-none hover:shadow-md active:bg-gray-600"
+              >
                 Submit
               </button>
-              
             </div>
           </div>
 
@@ -173,11 +156,12 @@
                     <td
                       class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
                     >
-                      <span @click="showDetails(doc.id)"
+                      <span
+                        @click="showDetails(doc.id)"
                         class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight"
                       >
                         <span
-                          aria-hidden 
+                          aria-hidden
                           class="absolute inset-0 bg-green-200 opacity-50 rounded-full"
                         ></span>
                         <span class="relative">View</span>
@@ -232,29 +216,29 @@
         <!-- //ranking code -->
         <section>
           <div class="w-[420px] bg-white p-8 rounded-2xl flex flex-col gap-5">
-              <button
-                data-te-modal-dismiss
-                aria-label="Close"
-                type="button"
-                class="ms-auto bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+            <button
+              data-te-modal-dismiss
+              aria-label="Close"
+              type="button"
+              class="ms-auto bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+            >
+              <span class="sr-only">Close</span>
+              <svg
+                class="w-3 h-3"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 14"
               >
-                <span class="sr-only">Close</span>
-                <svg
-                  class="w-3 h-3"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 14"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                  />
-                </svg>
-              </button>
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                />
+              </svg>
+            </button>
             <h1 class="text-xl text-gray-500">Leader Board Ranking</h1>
             <div class="relative overflow-x-auto">
               <table
@@ -268,28 +252,35 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(data, index) of ranking" :key="index" class="bg-white border-b">
+                  <tr
+                    v-for="(data, index) of ranking"
+                    :key="index"
+                    class="bg-white border-b"
+                  >
                     <th
                       scope="row"
                       class="py-4 font-medium text-gray-900 text-center"
                     >
-                      {{ index + 1}}
+                      {{ index + 1 }}
                     </th>
                     <td class="px-6 py-4 flex items-center space-x-2">
                       <div class="flex items-center">
                         <img
-                          :src="data.user_image != null ? data.user_image : defaultImage"
+                          :src="
+                            data.user_image != null
+                              ? data.user_image
+                              : defaultImage
+                          "
                           alt="User Avatar"
                           class="w-8 h-8 rounded-full mr-4 object-cover"
                         />
-                        <span class="text-gray-800 font-semibold"
-                          > {{ data.user_name }}</span
+                        <span class="text-gray-800 font-semibold">
+                          {{ data.user_name }}</span
                         >
                       </div>
                     </td>
-                    <td class="px-6 py-4">{{data.user_points}} pt</td>
+                    <td class="px-6 py-4">{{ data.user_points }} pt</td>
                   </tr>
-              
                 </tbody>
               </table>
             </div>
@@ -309,8 +300,7 @@ import { useServerStore } from "@/stores/server";
 import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { isEmptyOrNull } from "@/shared/utils";
-import defaultImage from '@/assets/images/userPro.png'
-
+import defaultImage from "@/assets/images/userPro.png";
 
 const page_count = ref(1);
 const router = useRouter();
@@ -323,11 +313,10 @@ const search_dept = ref("");
 const search_state = ref("");
 const ranking = ref({});
 
-
-onMounted(async() => {
+onMounted(async () => {
   initTE({ Modal, Popconfirm });
-  initialRun();ranking.value = await server.fetchRanking()
-
+  initialRun();
+  ranking.value = await server.fetchRanking();
 });
 
 watch(search_state, (value) => {
@@ -345,29 +334,42 @@ const getStateName = (value) => {
   return state ? state[0].state_name : "Unknown State";
 };
 
-const search = async() =>{
-  if(!isEmptyOrNull(search_act_number.value) || !isEmptyOrNull(search_dept.value) || !isEmptyOrNull(search_state.value)){
-    console.log(search_state.value, search_act_number.value, search_dept.value)
-    documents.value = []
-    
+const search = async () => {
+  if (
+    !isEmptyOrNull(search_act_number.value) ||
+    !isEmptyOrNull(search_dept.value) ||
+    !isEmptyOrNull(search_state.value)
+  ) {
+    console.log(search_state.value, search_act_number.value, search_dept.value);
+    documents.value = [];
+
     documents.value = await server.getPageDocuments(
       page_count.value,
-    10, 
-    !isEmptyOrNull(search_state.value) ?[search_state.value.toString()]: [],
-    !isEmptyOrNull(search_act_number.value) ? [search_act_number.value.toString()] : [],
-     "",
-      search_dept.value )
-    total_page_count.value = await server.getPageCount(10,
-    !isEmptyOrNull(search_state.value) ?[search_state.value.toString()]: [],!isEmptyOrNull(search_act_number.value) ? [search_act_number.value.toString()] : [],"", search_dept.value);
+      10,
+      !isEmptyOrNull(search_state.value) ? [search_state.value.toString()] : [],
+      !isEmptyOrNull(search_act_number.value)
+        ? [search_act_number.value.toString()]
+        : [],
+      "",
+      search_dept.value
+    );
+    total_page_count.value = await server.getPageCount(
+      10,
+      !isEmptyOrNull(search_state.value) ? [search_state.value.toString()] : [],
+      !isEmptyOrNull(search_act_number.value)
+        ? [search_act_number.value.toString()]
+        : [],
+      "",
+      search_dept.value
+    );
   }
-}
+};
 
 const initialRun = async () => {
   total_page_count.value = await server.getPageCount(10);
 
   documents.value = await server.getPageDocuments(page_count.value, 10);
   stateMapping.value = await server.getStateMapping();
-
 };
 
 const showDetails = (id) => {
@@ -379,15 +381,13 @@ const nextPage = async () => {
 
   page_count.value = page_count.value + 1;
   if (page_count.value > total_page_count.value["total_pages"]) {
-      page_count.value = total_page_count.value["total_pages"];
-      documents.value = await server.getPageDocuments(page_count.value, 10);
-   
-      return;
-    }
+    page_count.value = total_page_count.value["total_pages"];
     documents.value = await server.getPageDocuments(page_count.value, 10);
-  
 
-}
+    return;
+  }
+  documents.value = await server.getPageDocuments(page_count.value, 10);
+};
 const prevPage = async () => {
   documents.value = [];
   page_count.value = page_count.value - 1;
@@ -398,6 +398,4 @@ const prevPage = async () => {
   }
   documents.value = await server.getPageDocuments(page_count.value, 10);
 };
-
-
 </script>

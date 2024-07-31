@@ -80,7 +80,7 @@ const props = defineProps({
 onMounted( async () => {
     let response = await useServer.checkIfAccessTokenIsExistAndValid()
     if(response){
-        router.push({ name: 'Main' });
+        router.push({ name: 'Home' });
     }
 })
 

@@ -18,9 +18,6 @@ const point_plus_one = computed(() => useServer.point_plus_one);
     <ToastMessage class="fixed z-50 bottom-3 right-3" v-show="point_plus_one" message="Added +1 to your points" />
     <ToastMessage v-show="point_plus_ten" message="Added +10 to your points" />
 
-    
-
-    
     <div
       v-show="is_loading"
       class="fixed left-0 top-0 z-[1055] h-full w-full overflow-y-auto overflow-x-hidden outline-none "
