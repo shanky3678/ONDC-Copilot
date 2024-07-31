@@ -1,4 +1,5 @@
 <template class="overflow-hidden">
+  <!-- For Document Upload -->
   <div
     v-if="showUploadFile"
     class="fixed left-0 top-0 z-[1055] h-full w-full overflow-y-auto overflow-x-hidden outline-none"
@@ -14,6 +15,159 @@
         >
           <button
             @click="closeFileUpload"
+            type="button"
+            class="bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+          >
+            <span class="sr-only">Close</span>
+            <svg
+              class="w-3 h-3"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 14"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+              />
+            </svg>
+          </button>
+          <div class="text-center">
+            <h1 class="text-2xl font-medium">Upload Your Product Document</h1>
+            <p class="text-gray-400">Files Should be less than 5 MB</p>
+          </div>
+
+          <div class="flex items-center justify-center w-full">
+            <label
+              for="dropzone-file"
+              class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50"
+            >
+              <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                <div class="">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    id="Document"
+                    width="50"
+                    height="50"
+                  >
+                    <path
+                      d="M19,2H7C5.9,2,5,2.9,5,4v16c0,1.1,0.9,2,2,2h10c1.1,0,2-0.9,2-2V6L19,2z M17,18H7v-2h10V18z M17,14H7v-2h10V14z M17,10H7V8h10V10z M16,4.5V8H13V4.5H16z"
+                      fill="#7c7c7c"
+                      class="color000000 svgShape w-10 h-10 mb-4"
+                    />
+                  </svg>
+                </div>
+
+                <p class="mb-2 text-sm text-gray-500">
+                  <span class="font-semibold underline text-blue-500"
+                    >Click to upload</span
+                  >
+                  or drag and drop
+                </p>
+                <p class="text-xs text-gray-500">PDF</p>
+              </div>
+              <input
+                ref="fileDocmentInput"
+                type="file"
+                accept=".pdf"
+                class="hidden"
+                @change="handleDocumentUpload"
+                id="dropzone-file"
+              />
+            </label>
+          </div>
+
+          <section class="bg-white">
+            <div class=" ">
+              <div v-if="imageUrls.length > 0" class="flex">
+                <div
+                  v-for="(image, index) in imageUrls"
+                  class="mb-4 h-[50px] w-[50px] flex"
+                >
+                  <div class="ml-1 flex w-[50px]">
+                    <img
+                      :src="image"
+                      alt="Uploaded Image"
+                      class="max-w-full h-auto border rounded"
+                    />
+                    <button
+                      @click="removeImage(index)"
+                      type="button"
+                      class="ms-auto mr-2 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+                    >
+                      <span class="sr-only">Close</span>
+                      <svg
+                        class="w-3 h-3"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 14 14"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="mx-auto max-w-screen-md sm:text-center">
+                <form action="#">
+                  <div
+                    class="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0"
+                  >
+                    <div class="relative w-full">
+                      <input
+                        class="block p-3 w-full text-sm text-gray-900 rounded-lg border sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500"
+                        placeholder="Enter image details here"
+                        type="text"
+                        v-model="textarea"
+                        @keydown.enter="sendMessage"
+                        id="text"
+                      />
+                    </div>
+                    <div>
+                      <button
+                        @click="sendMessage"
+                        type="button"
+                        class="py-3 px-5 w-full text-sm font-medium text-center even:rounded-lg border cursor-pointer bg-primary-700 sm:rounded-none sm:rounded-r-lg ring-2"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- For Image Upload -->
+  <div
+    v-if="showImageUploadFile"
+    class="fixed left-0 top-0 z-[1055] h-full w-full overflow-y-auto overflow-x-hidden outline-none"
+  >
+    <div
+      class="relative overflow-hidden flex min-h-[calc(100%-1rem)] w-[580px] translate-y-[-50px] items-center transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[600px]"
+    >
+      <div
+        class="relative overflow-hidden pointer-events-auto flex w-full flex-col rounded-xl border-none bg-transparent bg-clip-padding text-current outline-none dark:bg-neutral-600 px-16 py-[60px]"
+      >
+        <div
+          class="w-[420px] bg-white p-8 rounded-2xl flex flex-col gap-12 border"
+        >
+          <button
+            @click="closeImageFileUpload"
             type="button"
             class="bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
           >
@@ -433,37 +587,28 @@
             class="w-full border border-[#D1CCCC] text-[20px] outline-0 py-5 pl-5 pr-14 rounded-[6px]"
           />
           <label
-            @click="triggerFileInput"
+            @click="openUploadFile"
             class="flex items-center absolute right-[92px] top-[21px] cursor-pointer"
           >
-            <div>
-              <input
-                type="file"
-                @change="handleDocumentUpload"
-                accept=".pdf"
-                ref="fileDocmentInput"
-                style="display: none"
-              />
-              <div class="w-[20px] h-[20px]">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  id="Document"
-                  width="20"
-                  height="20"
-                >
-                  <path
-                    d="M19,2H7C5.9,2,5,2.9,5,4v16c0,1.1,0.9,2,2,2h10c1.1,0,2-0.9,2-2V6L19,2z M17,18H7v-2h10V18z M17,14H7v-2h10V14z M17,10H7V8h10V10z M16,4.5V8H13V4.5H16z"
-                    fill="#7c7c7c"
-                    class="color000000 svgShape w-2 h-2 mb-4"
-                  />
-                </svg>
-              </div>
+            <div class="w-[20px] h-[20px]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                id="Document"
+                width="20"
+                height="20"
+              >
+                <path
+                  d="M19,2H7C5.9,2,5,2.9,5,4v16c0,1.1,0.9,2,2,2h10c1.1,0,2-0.9,2-2V6L19,2z M17,18H7v-2h10V18z M17,14H7v-2h10V14z M17,10H7V8h10V10z M16,4.5V8H13V4.5H16z"
+                  fill="#7c7c7c"
+                  class="color000000 svgShape w-2 h-2 mb-4"
+                />
+              </svg>
             </div>
           </label>
 
           <label
-            @click="openUploadFile"
+            @click="openImageUploadFile"
             class="flex items-center absolute right-16 top-[21px] cursor-pointer"
           >
             <div class="w-[20px] h-[20px]">
@@ -618,6 +763,8 @@ const productName = ref("");
 const imageUrls = ref([]);
 const imageLimitCrossed = ref(false);
 const showUploadFile = ref(false);
+const showImageUploadFile = ref(false);
+
 const showSideBar = ref(true);
 const server = useServerStore();
 const router = useRoute();
@@ -670,16 +817,25 @@ const openUploadFile = () => {
   showUploadFile.value = !showUploadFile.value;
 };
 
+const openImageUploadFile = () => {
+  showImageUploadFile.value = !showImageUploadFile.value;
+};
+
 const closeFileUpload = () => {
   showUploadFile.value = false;
   imageUrls.value = [];
   listBase64 = [];
 };
 
+const closeImageFileUpload = () => {
+  showImageUploadFile.value = false;
+  listDocBase64 = [];
+};
+
 const handleDocumentUpload = () => {
   const file = fileDocmentInput.value.files[0];
   if (file) {
-    console.log("Selected file:", file.name);
+    showUploadFile.value = false;
     fileName.value = file.name;
     try {
       const reader = new FileReader();

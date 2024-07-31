@@ -260,12 +260,12 @@ export const useServerStore = defineStore("server", () => {
       act_numbers: act_numbers,
       short_title: short_title,
       act_department: act_department,
-    })
-    console.log("raw", raw)
+    });
+    console.log("raw", raw);
     let requestOptions = {
       method: "POST",
       headers: myHeaders,
-      body: raw
+      body: raw,
     };
 
     let data = await fetch(
@@ -276,7 +276,7 @@ export const useServerStore = defineStore("server", () => {
     return await JSON.parse(response);
   }
 
-  async function getStateMapping(){
+  async function getStateMapping() {
     let myHeaders = new Headers();
     myHeaders.append("Accept", "application/json");
     myHeaders.append("Content-Type", "application/json");
@@ -295,7 +295,7 @@ export const useServerStore = defineStore("server", () => {
     return await JSON.parse(response);
   }
 
-  async function getPageDocumentsDetails(act_id){
+  async function getPageDocumentsDetails(act_id) {
     let myHeaders = new Headers();
     myHeaders.append("Accept", "application/json");
     myHeaders.append("Content-Type", "application/json");
@@ -305,7 +305,7 @@ export const useServerStore = defineStore("server", () => {
       method: "GET",
       headers: myHeaders,
     };
-    console.log("act_id", act_id) 
+    console.log("act_id", act_id);
 
     let data = await fetch(
       `${constant.endpoint}/fetch/act_details?id=${act_id}`,
