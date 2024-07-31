@@ -208,7 +208,6 @@ export const useServerStore = defineStore("server", () => {
 
   async function setUniBusy(value) {
     universal_loading.value = value;
-    console.log("loading state: ", universal_loading.value);
   }
 
   async function getPageCount(

@@ -80,74 +80,6 @@
               />
             </label>
           </div>
-
-          <section class="bg-white">
-            <div class=" ">
-              <div v-if="imageUrls.length > 0" class="flex">
-                <div
-                  v-for="(image, index) in imageUrls"
-                  class="mb-4 h-[50px] w-[50px] flex"
-                >
-                  <div class="ml-1 flex w-[50px]">
-                    <img
-                      :src="image"
-                      alt="Uploaded Image"
-                      class="max-w-full h-auto border rounded"
-                    />
-                    <button
-                      @click="removeImage(index)"
-                      type="button"
-                      class="ms-auto mr-2 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
-                    >
-                      <span class="sr-only">Close</span>
-                      <svg
-                        class="w-3 h-3"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 14 14"
-                      >
-                        <path
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="mx-auto max-w-screen-md sm:text-center">
-                <form action="#">
-                  <div
-                    class="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0"
-                  >
-                    <div class="relative w-full">
-                      <input
-                        class="block p-3 w-full text-sm text-gray-900 rounded-lg border sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500"
-                        placeholder="Enter image details here"
-                        type="text"
-                        v-model="textarea"
-                        @keydown.enter="sendMessage"
-                        id="text"
-                      />
-                    </div>
-                    <div>
-                      <button
-                        @click="sendMessage"
-                        type="button"
-                        class="py-3 px-5 w-full text-sm font-medium text-center even:rounded-lg border cursor-pointer bg-primary-700 sm:rounded-none sm:rounded-r-lg ring-2"
-                      >
-                        Submit
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </section>
         </div>
       </div>
     </div>
@@ -817,19 +749,19 @@ const openUploadFile = () => {
   showUploadFile.value = !showUploadFile.value;
 };
 
+const closeFileUpload = () => {
+  showUploadFile.value = false;
+  removeDocument();
+};
+
 const openImageUploadFile = () => {
   showImageUploadFile.value = !showImageUploadFile.value;
 };
 
-const closeFileUpload = () => {
-  showUploadFile.value = false;
-  imageUrls.value = [];
-  listBase64 = [];
-};
-
 const closeImageFileUpload = () => {
   showImageUploadFile.value = false;
-  listDocBase64 = [];
+  imageUrls.value = [];
+  listBase64 = [];
 };
 
 const handleDocumentUpload = () => {
@@ -897,8 +829,8 @@ const removeImage = (index) => {
   }
 };
 
-const removeDocument = (index) => {
-  fileDocmentInput.value.value = "";
+const removeDocument = () => {
+  fileDocmentInput.value = "";
   fileName.value = "";
   listDocBase64.value = [];
 };
@@ -968,7 +900,6 @@ const autoScrollDown = () => {
 const sendMessage = () => {
   if (socket && socket.readyState === WebSocket.OPEN && textarea.value != "") {
     messageLoading.value = true;
-    console.log("listBase64: ", listBase64);
     let values = JSON.stringify({
       question: textarea.value,
       state: state.value,
@@ -999,6 +930,7 @@ const resetDefault = () => {
   listDocBase64 = [];
   imageUrls.value = [];
   showUploadFile.value = false;
+  showImageUploadFile.value = false;
   setTimeout(() => {
     autoScrollDown();
   }, 500);

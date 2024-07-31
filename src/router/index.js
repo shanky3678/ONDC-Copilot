@@ -8,7 +8,7 @@ import MainView from "@/views/MainView.vue";
 import AuthVerificationView from "@/views/AuthVerificationView.vue";
 import LawDataTable from "@/views/LawDataTable.vue";
 import LawDataTableView from "@/views/LawDataTableView";
-import PricingView from '@/views/PricingView.vue'
+import PricingView from "@/views/PricingView.vue";
 import { useServerStore } from "@/stores/server";
 import { isEmptyOrNull } from "@/shared/utils";
 
@@ -25,18 +25,16 @@ const router = createRouter({
       name: "Main",
       component: MainView,
       meta: { requiresAuth: true },
-
     },
     {
       path: "/law-data",
       name: "LawDataTable",
       component: LawDataTable,
       meta: { requiresAuth: true },
-
     },
     {
-      path:"/pricing",
-      name:"Pricing",
+      path: "/pricing",
+      name: "Pricing",
       component: PricingView,
       meta: { requiresAuth: true },
     },
@@ -46,13 +44,12 @@ const router = createRouter({
       name: "LawDataTableView",
       component: LawDataTableView,
       meta: { requiresAuth: true },
-
     },
     {
       path: "/home",
       name: "Home",
       component: HomeView,
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true },
     },
     {
       path: "/login",
@@ -88,15 +85,13 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   const server = useServerStore();
-  console.log("Starting the router guard");
   server.setUniBusy(true);
 
   // let data = await server.checkIfAccessTokenIsExistAndValid()
-  
-  if (to.path === "/login" ) {
+
+  if (to.path === "/login") {
     server.setUniBusy(false);
     next(); // Allow navigation to the login route
-   
   }
 
   // Check if the user is verified as logged in
@@ -105,7 +100,7 @@ router.beforeEach(async (to, from, next) => {
   if ((!isValid || !isValidUser) && to.meta.requiresAuth) {
     server.setUniBusy(false);
     next("/login");
-     // Redirect to the login route
+    // Redirect to the login route
   } else {
     server.setUniBusy(false);
     // Proceed with the navigation
