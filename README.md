@@ -51,9 +51,9 @@ To start using the AI Compliance Assistant (ACS):
    npm install
    ```
 3. **Run The Application**:
-  ```base
-  npm run dev
-  ```
+   ```base
+   npm run dev
+   ```
 
 ## 📝 Contributions
 
