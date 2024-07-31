@@ -1,6 +1,6 @@
 <template>
   <section>
-    <Navbar class="z-[99]" hide-me="" />
+    <Navbar class="z-[99]" :hide-me="false" />
 
     <div class="min-h-screen flex justify-center items-center">
       <div class>

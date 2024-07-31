@@ -542,7 +542,7 @@
     </div>
 
     <div class="min-w-[80%] w-[80%]" :class="showSideBarClass">
-      <Navbar :hide-me="!showSideBar" :show-all-laws="true" />
+      <Navbar :hide-me="showSideBar" :show-all-laws="true" />
       <div class="bg-[#d1cccc2e] pl-7 pr-[35px] pb-7 pt-[40px]">
         <div
           ref="chatContainer"
@@ -812,7 +812,7 @@ onMounted(async () => {
     if (router.query.type == "label") {
       textarea.value = "Is this product package label legally compliant?";
     } else if (router.query.type == "product") {
-      textarea.value = "What legal compliances apply to this product?";
+      textarea.value = "Is this product package label legally compliant?";
     } else if (router.query.type == "laws") {
       textarea.value =
         "What are all the rules and regulations I need to follow to be completely compliant while selling online?";

@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <Navbar class="z-[99]" hide-me="" />
+    <Navbar class="z-[99]" :hide-me="false" />
 
     <div
       class="w-full bg-[#d1cccc2e] relative pt-[64px] pl-10 pr-[62px] pb-11 flex h-customh2 overflow-auto sidebar"

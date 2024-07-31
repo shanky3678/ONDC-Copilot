@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar class="z-[99]" hide-me="" />
+    <Navbar class="z-[99]" :hide-me="false" />
 
     <!-- component -->
     <body class="antialiased font-sans bg-gray-200">

@@ -25,7 +25,7 @@
       </div>
     </div>
     <div>
-      <Navbar class="z-[99]" hide-me="" />
+      <Navbar class="z-[99]" :hide-me="false" />
       <div class="w-full bg-[#d1cccc2e] h-customh2 relative">
         <div class="w-full flex justify-end pr-10">
           <RouterLink to="/home"
