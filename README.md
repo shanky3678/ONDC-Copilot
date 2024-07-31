@@ -1,4 +1,4 @@
-# 📜 AI Compliance Assistant (ACS) 🚀
+# 📜 AI Legal Compliance Bot 🚀
 
 ## 📝 Brief About the Idea
 Legal compliance is a complex and time-consuming problem. This gets worse as the company/startup scales and hampers the growth of the company.
