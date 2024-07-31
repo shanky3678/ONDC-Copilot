@@ -42,7 +42,7 @@ To start using the AI Compliance Assistant (ACS):
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/ai-compliance-assistant.git
+   git clone https://github.com/shanky3678/ai-compliance-assistance.git
    ```
 
 2. **Install Dependencies**:
