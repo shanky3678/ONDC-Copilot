@@ -61,7 +61,8 @@ To start using the AI Compliance Assistant (ACS):
 
 ## Here is the link to the back-end repository
 
-(Link to the Back-end repo)['https://github.com/JeevansSP/hackathon-poc']
+(Link to the Back-end repo)[https://github.com/JeevansSP/hackathon-poc]
+
 
 ## 📝 Contributions
 
