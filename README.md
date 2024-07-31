@@ -69,4 +69,4 @@ To start using the AI Compliance Assistant (ACS):
 Feel free to contribute, open issues, and create pull requests. Let's make legal compliance easy and efficient together! 🚀
 
 ## 📞 Contact
-For any questions or support, please reach out to us at dev@cydratech.com
+For any questions or support, please reach out to us at info@cydratech.com
