@@ -11,7 +11,7 @@
         class="relative overflow-hidden pointer-events-auto flex w-full flex-col rounded-xl border-none bg-transparent bg-clip-padding text-current outline-none dark:bg-neutral-600 px-16 py-[60px]"
       >
         <div
-          class="w-[420px] bg-white p-8 rounded-2xl flex flex-col gap-12 border"
+          class="w-[420px] bg-white p-4 rounded-2xl flex flex-col gap-12 border"
         >
           <button
             @click="closeFileUpload"
@@ -36,16 +36,17 @@
             </svg>
           </button>
           <div class="text-center">
-            <h1 class="text-2xl font-medium">Upload Your Product Document</h1>
+            <h1 class="text-2xl font-medium">
+              Upload Your Product Document/ Images
+            </h1>
             <p class="text-gray-400">Files Should be less than 5 MB</p>
           </div>
-
           <div class="flex items-center justify-center w-full">
             <label
               for="dropzone-file"
-              class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50"
+              class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50"
             >
-              <div class="flex flex-col items-center justify-center pt-5 pb-6">
+              <div class="flex flex-col items-center justify-center pb-6">
                 <div class="">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -80,12 +81,144 @@
               />
             </label>
           </div>
+          <div>
+            <button
+              v-if="fileName"
+              @click="removeDocument"
+              type="button"
+              class="bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+            >
+              <span class="sr-only">Close</span>
+              <svg
+                class="w-3 h-3"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 14"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                />
+              </svg>
+            </button>
+            <p v-if="fileName">Selected file: {{ fileName }}</p>
+          </div>
+          <div class="flex items-center justify-center w-full">
+            <label
+              for="dropzone1-file"
+              class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50"
+            >
+              <div class="flex flex-col items-center justify-center pb-6">
+                <div class="w-[50px] h-[50px]">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    id="Camera"
+                  >
+                    <path
+                      d="M10 8a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm8-3h-2.4a.888.888 0 0 1-.789-.57l-.621-1.861A.89.89 0 0 0 13.4 2H6.6c-.33 0-.686.256-.789.568L5.189 4.43A.889.889 0 0 1 4.4 5H2C.9 5 0 5.9 0 7v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-8 11a5 5 0 0 1-5-5 5 5 0 1 1 10 0 5 5 0 0 1-5 5zm7.5-7.8a.7.7 0 1 1 0-1.4.7.7 0 0 1 0 1.4z"
+                      fill="#7c7c7c"
+                      class="color000000 svgShape w-2 h-2 mb-4"
+                    ></path>
+                  </svg>
+                </div>
+
+                <p class="mb-2 text-sm text-gray-500">
+                  <span class="font-semibold underline text-blue-500"
+                    >Click to upload</span
+                  >
+                  or drag and drop
+                </p>
+                <p class="text-xs text-gray-500">JPG or JPeG</p>
+              </div>
+              <input
+                ref="inputFile"
+                type="file"
+                accept=".jpg, .jpeg"
+                class="hidden"
+                multiple
+                @change="handleFileUpload"
+                id="dropzone1-file"
+              />
+            </label>
+          </div>
+          <section class="bg-white">
+            <div class=" ">
+              <div v-if="imageUrls.length > 0" class="flex">
+                <div
+                  v-for="(image, index) in imageUrls"
+                  class="mb-4 h-[50px] w-[50px] flex"
+                >
+                  <div class="ml-1 flex w-[50px]">
+                    <img
+                      :src="image"
+                      alt="Uploaded Image"
+                      class="max-w-full h-auto border rounded"
+                    />
+                    <button
+                      @click="removeImage(index)"
+                      type="button"
+                      class="ms-auto mr-2 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+                    >
+                      <span class="sr-only">Close</span>
+                      <svg
+                        class="w-3 h-3"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 14 14"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="mx-auto max-w-screen-md sm:text-center">
+                <form action="#">
+                  <div
+                    class="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0"
+                  >
+                    <div class="relative w-full">
+                      <input
+                        class="block p-3 w-full text-sm text-gray-900 rounded-lg border sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500"
+                        placeholder="Enter image details here"
+                        type="text"
+                        v-model="textarea"
+                        @keydown.enter="sendMessage"
+                        id="text"
+                      />
+                    </div>
+                    <div>
+                      <button
+                        @click="sendMessage"
+                        type="button"
+                        class="py-3 px-5 w-full text-sm font-medium text-center even:rounded-lg border cursor-pointer bg-primary-700 sm:rounded-none sm:rounded-r-lg ring-2"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </div>
   </div>
   <!-- For Image Upload -->
-  <div
+  <!-- <div
     v-if="showImageUploadFile"
     class="fixed left-0 top-0 z-[1055] h-full w-full overflow-y-auto overflow-x-hidden outline-none"
   >
@@ -237,7 +370,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="w-full bg-white flex relative">
     <ToastMessage
@@ -482,34 +615,7 @@
             </div>
           </div>
         </div>
-        <div>
-          <div>
-            <button
-              v-if="fileName"
-              @click="removeDocument"
-              type="button"
-              class="bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
-            >
-              <span class="sr-only">Close</span>
-              <svg
-                class="w-3 h-3"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 14"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                />
-              </svg>
-            </button>
-            <p v-if="fileName">Selected file: {{ fileName }}</p>
-          </div>
-        </div>
+
         <div class="mt-[18px] relative justify-center">
           <input
             @keydown.enter="sendMessage"
@@ -520,7 +626,7 @@
           />
           <label
             @click="openUploadFile"
-            class="flex items-center absolute right-[92px] top-[21px] cursor-pointer"
+            class="flex items-center absolute right-16 top-[21px] cursor-pointer"
           >
             <div class="w-[20px] h-[20px]">
               <svg
@@ -535,25 +641,6 @@
                   fill="#7c7c7c"
                   class="color000000 svgShape w-2 h-2 mb-4"
                 />
-              </svg>
-            </div>
-          </label>
-
-          <label
-            @click="openImageUploadFile"
-            class="flex items-center absolute right-16 top-[21px] cursor-pointer"
-          >
-            <div class="w-[20px] h-[20px]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                id="Camera"
-              >
-                <path
-                  d="M10 8a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm8-3h-2.4a.888.888 0 0 1-.789-.57l-.621-1.861A.89.89 0 0 0 13.4 2H6.6c-.33 0-.686.256-.789.568L5.189 4.43A.889.889 0 0 1 4.4 5H2C.9 5 0 5.9 0 7v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-8 11a5 5 0 0 1-5-5 5 5 0 1 1 10 0 5 5 0 0 1-5 5zm7.5-7.8a.7.7 0 1 1 0-1.4.7.7 0 0 1 0 1.4z"
-                  fill="#7c7c7c"
-                  class="color000000 svgShape w-2 h-2 mb-4"
-                ></path>
               </svg>
             </div>
           </label>
@@ -749,26 +836,17 @@ const openUploadFile = () => {
   showUploadFile.value = !showUploadFile.value;
 };
 
-//new
 const closeFileUpload = () => {
   showUploadFile.value = false;
-  removeDocument();
-};
-
-const openImageUploadFile = () => {
-  showImageUploadFile.value = !showImageUploadFile.value;
-};
-
-const closeImageFileUpload = () => {
   showImageUploadFile.value = false;
   imageUrls.value = [];
   listBase64 = [];
+  removeDocument();
 };
 
 const handleDocumentUpload = () => {
   const file = fileDocmentInput.value.files[0];
   if (file) {
-    showUploadFile.value = false;
     fileName.value = file.name;
     try {
       const reader = new FileReader();
@@ -920,7 +998,6 @@ const sendMessage = () => {
         message: textarea.value,
       },
     });
-    console.log("values: ", values);
     socket.send(values);
     resetDefault();
   }
@@ -928,14 +1005,9 @@ const sendMessage = () => {
 
 const resetDefault = () => {
   textarea.value = "";
-  listBase64 = [];
-  listDocBase64 = [];
-  imageUrls.value = [];
-  showUploadFile.value = false;
-  showImageUploadFile.value = false;
+  closeFileUpload();
   setTimeout(() => {
     autoScrollDown();
   }, 500);
-  removeDocument();
 };
 </script>
