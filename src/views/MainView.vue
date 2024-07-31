@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar hide-me="false" />
+    <Navbar :hide-me="false" />
     <div class="flex w-full pt-10 pl-20 overflow-y-hidden h-[calc(100vh-84px)]">
       <div class="w-[50%]">
         <div class="flex flex-col justify-between h-full">

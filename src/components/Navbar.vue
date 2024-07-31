@@ -3,7 +3,7 @@
     class="pl-8 pr-[60px] py-2 flex justify-between items-center shadow-lg sticky"
   >
     <div class="flex space-x-5 items-center w-full">
-      <div v-if="hideMe">
+      <div v-if="!hideMe">
         <RouterLink to="/main">
           <div class="flex items-center">
             <img

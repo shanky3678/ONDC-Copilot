@@ -909,8 +909,8 @@ const sendMessage = () => {
         ? selectedCategory.value
         : "",
       "product name": productName.value,
-      images: listBase64 || null,
-      pdf: listDocBase64[0] || null,
+      images: listBase64 || [],
+      pdf: listDocBase64[0] || "",
     });
     messages.value.push({
       user: {
@@ -919,6 +919,7 @@ const sendMessage = () => {
         message: textarea.value,
       },
     });
+    console.log("values: ", values);
     socket.send(values);
     resetDefault();
   }
