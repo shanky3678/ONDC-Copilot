@@ -12,7 +12,7 @@
               alt="logo"
             />
             <p class="ml-3 font-bold text-[#1F263E] text-[26px]">
-              AI Compliance
+              AI Compliance Assistant
             </p>
           </div>
         </RouterLink>

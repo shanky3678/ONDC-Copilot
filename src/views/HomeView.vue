@@ -351,7 +351,7 @@
                 </div>
                 <div v-else class="flex mt-[20px] mb-[20px] items-start">
                   <img class="h-[45px] w-[45px] rounded-full" :src="profile" />
-                  <div class="flex items-start mt-[15px] ml-[18px]">
+                  <div class="items-start mt-[15px] ml-[18px]">
                     <div class="flex">
                       <div v-if="imageUrls" class="flex">
                         <div
@@ -368,6 +368,12 @@
                         </div>
                       </div>
                     </div>
+                    <div v-if="message.user.pdf">
+                      <p>
+                        File Name: <span>{{ message.user.pdf }}</span>
+                      </p>
+                    </div>
+
                     <p class="font-medium text-[20px] text-[#002AB1]">
                       {{ message.user.message }}
                     </p>
@@ -610,7 +616,6 @@ const messageLoading = ref(false);
 const isBusy = ref(false);
 const productName = ref("");
 const imageUrls = ref([]);
-const DocumentUrls = ref([]);
 const imageLimitCrossed = ref(false);
 const showUploadFile = ref(false);
 const showSideBar = ref(true);
@@ -677,7 +682,6 @@ const handleDocumentUpload = () => {
     console.log("Selected file:", file.name);
     fileName.value = file.name;
     try {
-      imageUrls.value.push(URL.createObjectURL(file));
       const reader = new FileReader();
       let base64String = "";
 
@@ -740,14 +744,7 @@ const removeImage = (index) => {
 const removeDocument = (index) => {
   fileDocmentInput.value.value = "";
   fileName.value = "";
-  if (DocumentUrls.value.length === 1) {
-    DocumentUrls.value = [];
-    listDocBase64.value = [];
-    return;
-  } else if (index.length > 1) {
-    DocumentUrls.value.splice(index, 1);
-    listDocBase64.value.splice(index, 1);
-  }
+  listDocBase64.value = [];
 };
 
 let messageListener = (event) => {
@@ -815,7 +812,7 @@ const autoScrollDown = () => {
 const sendMessage = () => {
   if (socket && socket.readyState === WebSocket.OPEN && textarea.value != "") {
     messageLoading.value = true;
-    console.log("listDocBase64: ", listDocBase64);
+    console.log("listBase64: ", listBase64);
     let values = JSON.stringify({
       question: textarea.value,
       state: state.value,
@@ -825,11 +822,12 @@ const sendMessage = () => {
         ? selectedCategory.value
         : "",
       "product name": productName.value,
-      images: listBase64,
+      images: listBase64 || null,
       pdf: listDocBase64[0] || null,
     });
     messages.value.push({
       user: {
+        pdf: fileName.value,
         images: imageUrls.value,
         message: textarea.value,
       },
@@ -848,5 +846,6 @@ const resetDefault = () => {
   setTimeout(() => {
     autoScrollDown();
   }, 500);
+  removeDocument();
 };
 </script>
